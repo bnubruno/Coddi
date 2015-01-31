@@ -67,7 +67,7 @@ public class NavigationDrawerItemAdapter extends BaseAdapter {
 
     private View buscarViewSection(NavigationDrawerItem item) {
 
-        View view = mInflater.inflate(R.layout.drawer_section_item, null);
+        View view = mInflater.inflate(R.layout.drawer_list_section, null);
         view.setClickable(false);
         view.setSelected(false);
 

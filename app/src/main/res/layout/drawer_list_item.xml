@@ -1,7 +1,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="10dp"
-                android:id="@+id/drawerListItem">
+                android:id="@+id/drawerListItem"
+                android:background="@drawable/list_selector">
 
     <TextView
         android:id="@+id/txtTitulo"
@@ -9,6 +10,9 @@
         android:layout_height="wrap_content"
         android:minHeight="?android:attr/listPreferredItemHeightSmall"
         android:textSize="16sp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:textColor="@color/list_item_title"
         android:gravity="center_vertical"
         android:paddingRight="40dp"/>
 

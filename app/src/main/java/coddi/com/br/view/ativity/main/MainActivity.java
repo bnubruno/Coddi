@@ -10,7 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import coddi.com.br.coddi.R;
-import coddi.com.br.view.fragment.PlaceholderFragment;
+import coddi.com.br.view.fragment.ContaFragment;
 
 
 public class MainActivity extends ActionBarActivity implements NavigationDrawerFragment.NavigationDrawerCallbacks {
@@ -41,7 +41,8 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
     public void onNavigationDrawerItemSelected(int position) {
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.container, PlaceholderFragment.newInstance(position)).commit();
+        fragmentManager.beginTransaction().replace(R.id.container, ContaFragment.newInstance(position)).commit();
+
     }
 
     public void onSectionAttached(int number) {

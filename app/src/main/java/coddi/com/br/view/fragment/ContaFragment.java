@@ -14,7 +14,7 @@ import coddi.com.br.view.ativity.main.MainActivity;
 /**
  * Created by Bruno on 31/01/2015.
  */
-public class PlaceholderFragment extends Fragment {
+public class ContaFragment extends Fragment {
     /**
      * The fragment argument representing the section number for this
      * fragment.
@@ -25,15 +25,15 @@ public class PlaceholderFragment extends Fragment {
      * Returns a new instance of this fragment for the given section
      * number.
      */
-    public static PlaceholderFragment newInstance(int sectionNumber) {
-        PlaceholderFragment fragment = new PlaceholderFragment();
+    public static ContaFragment newInstance(int sectionNumber) {
+        ContaFragment fragment = new ContaFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_SECTION_NUMBER, sectionNumber);
         fragment.setArguments(args);
         return fragment;
     }
 
-    public PlaceholderFragment() {
+    public ContaFragment() {
     }
 
 

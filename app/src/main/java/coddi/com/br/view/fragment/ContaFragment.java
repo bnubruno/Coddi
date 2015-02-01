@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import coddi.com.br.coddi.R;
-import coddi.com.br.view.ativity.main.MainActivity;
+import coddi.com.br.view.activity.main.MainActivity;
 
 /**
  * Created by Bruno on 31/01/2015.

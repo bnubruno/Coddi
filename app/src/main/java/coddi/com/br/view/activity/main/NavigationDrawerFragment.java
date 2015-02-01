@@ -1,5 +1,6 @@
-package coddi.com.br.view.ativity.main;
+package coddi.com.br.view.activity.main;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.app.Activity;
 import android.support.v7.app.ActionBar;
@@ -18,7 +19,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import coddi.com.br.coddi.R;
+import coddi.com.br.view.activity.login.LoginActivity;
 
 /**
  * Fragment used for managing interactions for and presentation of a navigation drawer.
@@ -246,6 +247,9 @@ public class NavigationDrawerFragment extends Fragment {
         }
 
         if (item.getItemId() == R.id.action_example) {
+            Intent it = new Intent(getActivity().getApplicationContext(), LoginActivity.class);
+            startActivity(it);
+
             Toast.makeText(getActivity(), "Example action.", Toast.LENGTH_SHORT).show();
             return true;
         }

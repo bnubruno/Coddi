@@ -1,4 +1,4 @@
-package coddi.com.br.view.ativity.main;
+package coddi.com.br.view.activity.main;
 
 import android.content.Context;
 import android.view.LayoutInflater;

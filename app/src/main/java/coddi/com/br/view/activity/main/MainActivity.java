@@ -1,5 +1,6 @@
-package coddi.com.br.view.ativity.main;
+package coddi.com.br.view.activity.main;
 
+import android.content.Intent;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
@@ -10,20 +11,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import coddi.com.br.coddi.R;
+import coddi.com.br.view.activity.login.LoginActivity;
+import coddi.com.br.view.activity.login.LoginConstants;
 import coddi.com.br.view.fragment.ContaFragment;
 
 
 public class MainActivity extends ActionBarActivity implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
-    /**
-     * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
-     */
     private NavigationDrawerFragment mNavigationDrawerFragment;
 
-    /**
-     * Used to store the last screen title. For use in {@link #restoreActionBar()}.
-     */
     private CharSequence mTitle;
+    private boolean logou = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +33,18 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 
         // Set up the drawer.
         mNavigationDrawerFragment.setUp(R.id.navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout));
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        logou = getIntent().getBooleanExtra(LoginConstants.USUARIO_LOGADO, false);
+        if (!logou) {
+            Intent it = new Intent(this, LoginActivity.class);
+            startActivity(it);
+            this.finish();
+        }
     }
 
     @Override

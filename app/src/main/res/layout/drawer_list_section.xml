@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/section_selector"
+                android:background="@drawable/drawer_section_options"
                 android:clickable="false">
 
     <TextView
@@ -10,10 +10,9 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:textSize="14sp"
-        android:paddingTop="20dp"
         android:paddingLeft="20dp"
-        android:paddingBottom="2dp"
-        android:textColor="@color/list_item_title"
-        style="?android:attr/listSeparatorTextViewStyle"/>
+        android:textColor="@color/branco"
+        style="?android:attr/listSeparatorTextViewStyle"
+        android:gravity="center_vertical"/>
 
 </RelativeLayout>

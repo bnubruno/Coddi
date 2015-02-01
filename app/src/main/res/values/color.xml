@@ -3,16 +3,18 @@
     <color name="list_item_title">#717171</color>
     <color name="list_background">@android:color/background_light</color>
     <color name="list_background_pressed">#33B5E5</color>
-    <color name="tv_saldo_total_positivo">#33B5E5</color>
-    <color name="tv_saldo_total_negativo">#fd482f</color>
     <color name="list_divider">#c5c4c4</color>
     <color name="counter_text_bg">#626262</color>
     <color name="counter_text_color">#c5c4c4</color>
     <color name="background_main">#f1f1f1</color>
     <color name="black">#191919</color>
     <color name="shadow">#c5c4c4</color>
-    <color name="pretoTransparente">#95000000</color>
-    
+    <color name="preto">#1C1C1C</color>
+    <color name="cinza">#4F4F4F</color>
+    <color name="branco">#FFFFFF</color>
+    <color name="verde">#00FF00</color>
+
+
     
     
     <!-- BACKUP 

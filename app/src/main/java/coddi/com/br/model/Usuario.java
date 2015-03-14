@@ -18,6 +18,9 @@ public class Usuario {
     @DatabaseField(canBeNull = false)
     private String senha;
 
+    @DatabaseField
+    private int version;
+
     public Long getId() {
         return id;
     }
@@ -40,5 +43,13 @@ public class Usuario {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public int getVersion() {
+        return version;
+    }
+
+    public void setVersion(int version) {
+        this.version = version;
     }
 }

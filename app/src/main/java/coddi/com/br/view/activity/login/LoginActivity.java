@@ -29,12 +29,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import coddi.com.br.coddi.R;
+import coddi.com.br.controller.UsuarioController;
 import coddi.com.br.view.activity.main.MainActivity;
 
 public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
 
     private static final String[] USUARIOS_CADASTRADOS = new String[]{"docsbruno@gmail.com:123456", "bar@example.com:world"};
     private UsuarioLoginTask mAuthTask = null;
+
+    private UsuarioController usuarioController;
 
     private AutoCompleteTextView mEmailView;
     private EditText mSenhaView;
@@ -45,6 +48,8 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        usuarioController = new UsuarioController((coddi.com.br.App.CoddiApplication) getApplicationContext());
 
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
@@ -157,7 +162,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
                 Uri.withAppendedPath(ContactsContract.Profile.CONTENT_URI, ContactsContract.Contacts.Data.CONTENT_DIRECTORY), ProfileQuery.PROJECTION,
 
                 // Select only email addresses.
-                ContactsContract.Contacts.Data.MIMETYPE + " = ?",                new String[]{ContactsContract.CommonDataKinds.Email.CONTENT_ITEM_TYPE},
+                ContactsContract.Contacts.Data.MIMETYPE + " = ?", new String[]{ContactsContract.CommonDataKinds.Email.CONTENT_ITEM_TYPE},
 
                 // Show primary email addresses first. Note that there won't be
                 // a primary email address if the user hasn't specified one.
@@ -208,21 +213,6 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
 
         @Override
         protected Boolean doInBackground(Void... params) {
-
-            try {
-                // Simulate network access.
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                return false;
-            }
-
-            for (String usuarios : USUARIOS_CADASTRADOS) {
-                String[] pieces = usuarios.split(":");
-                if (pieces[0].equals(mEmail)) {
-                    return pieces[1].equals(mSenha);
-                }
-            }
-
             return true;
         }
 

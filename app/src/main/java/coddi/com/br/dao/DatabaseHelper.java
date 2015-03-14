@@ -28,11 +28,6 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         try {
             TableUtils.createTable(connectionSource, Usuario.class);
 
-//			EntidadeDAO entidadeDAO = new EntidadeDAO(getConnectionSource());
-//			entidadeDAO.create(new Entidade("Banco do Brasil", TipoEntidade.CC));
-//			entidadeDAO.create(new Entidade("HSBC Bank", TipoEntidade.CC));
-//			entidadeDAO.create(new Entidade("Cart�o de Cr�dito BB", TipoEntidade.CR));
-
         } catch (SQLException e) {
             Log.e(TAG, "Erro ao criar banco.", e);
             throw new RuntimeException(e);

@@ -1,13 +1,20 @@
 package coddi.com.br.model;
 
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
+
 /**
  * Created by Bruno on 02/02/2015.
  */
+@DatabaseTable(tableName = "Categoria")
 public class Categoria {
 
+    @DatabaseField(id = true)
     private Long id;
-    private int version;
+    @DatabaseField
     private String nome;
+    @DatabaseField
+    private int version;
 
     public Long getId() {
         return id;

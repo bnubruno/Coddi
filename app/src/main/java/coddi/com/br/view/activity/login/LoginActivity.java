@@ -28,16 +28,17 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import coddi.com.br.App.CoddiApplication;
 import coddi.com.br.coddi.R;
-import coddi.com.br.controller.UsuarioController;
+import coddi.com.br.controller.BOPool;
+import coddi.com.br.controller.UsuarioBO;
+import coddi.com.br.model.Usuario;
 import coddi.com.br.view.activity.main.MainActivity;
 
 public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
 
     private static final String[] USUARIOS_CADASTRADOS = new String[]{"docsbruno@gmail.com:123456", "bar@example.com:world"};
     private UsuarioLoginTask mAuthTask = null;
-
-    private UsuarioController usuarioController;
 
     private AutoCompleteTextView mEmailView;
     private EditText mSenhaView;
@@ -48,8 +49,6 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-        usuarioController = new UsuarioController((coddi.com.br.App.CoddiApplication) getApplicationContext());
 
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
@@ -213,7 +212,19 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
 
         @Override
         protected Boolean doInBackground(Void... params) {
-            return true;
+            UsuarioBO usuarioBO = BOPool.getInstance((CoddiApplication) getApplicationContext()).getUsuarioBO();
+
+            if (usuarioBO.buscarPorLoginSenha(mEmail, mSenha) != null) {
+                return true;
+            } else {
+                Usuario usuario = new Usuario();
+                usuario.setLogin("docsbruno@gmail.com");
+                usuario.setSenha("123456");
+                usuario.setVersion(1);
+                usuarioBO.incluir(usuario);
+            }
+
+            return false;
         }
 
         @Override

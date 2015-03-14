@@ -18,6 +18,8 @@ public class CoddiApplication extends Application {
     private static PreferenciasCoddi preferencias;
     private static Gson gson;
 
+    private DatabaseHelper bd;
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -55,6 +57,13 @@ public class CoddiApplication extends Application {
         if (preferencias != null) {
             salvar(preferencias);
         }
+    }
+
+    public DatabaseHelper getBd() {
+        if (bd == null) {
+            bd = new DatabaseHelper(this);
+        }
+        return bd;
     }
 
     public String getServidor() {

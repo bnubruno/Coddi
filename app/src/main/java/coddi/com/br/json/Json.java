@@ -13,7 +13,7 @@ import coddi.com.br.App.CoddiApplication;
 /**
  * Created by Bruno on 02/02/2015.
  */
-public class PojoJson<E> {
+public class Json<E> {
 
     public E fromJson(JsonObject produtoJson, Class c) {
         E e = (E) CoddiApplication.getGson().fromJson(produtoJson.toString(), c);

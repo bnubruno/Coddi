@@ -1,15 +1,14 @@
 package coddi.com.br.view.activity.main.fragment;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import coddi.com.br.coddi.R;
-import coddi.com.br.view.activity.main.MainActivity;
 
 /**
  * Created by Bruno on 31/01/2015.
@@ -53,7 +52,7 @@ public class MainActivityFragment extends Fragment {
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        ((MainActivity) activity).onSectionAttached(getArguments().getInt(ARG_SECTION_NUMBER));
+//        ((MainActivity) activity).onSectionAttached(getArguments().getInt(ARG_SECTION_NUMBER));
     }
 
 }

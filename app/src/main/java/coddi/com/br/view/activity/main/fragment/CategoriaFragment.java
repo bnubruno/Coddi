@@ -31,7 +31,7 @@ public class CategoriaFragment extends MainActivityFragment {
 
         rootView = inflater.inflate(R.layout.fragment_categorias, container, false);
 
-        String[] values = new String[]{"teste"};
+        String[] values = new String[]{"Refeição", "Supermecardo", "Combustível"};
 
         ArrayList<String> list = new ArrayList<String>();
         for (int i = 0; i < values.length; ++i) {

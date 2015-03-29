@@ -1,7 +1,7 @@
 package coddi.com.br.view.activity.categoria;
 
+import android.app.Activity;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,7 +17,7 @@ import coddi.com.br.Adapter.SpinnerArrayAdapter;
 import coddi.com.br.coddi.R;
 import coddi.com.br.model.TipoFinanceiro;
 
-public class CadastrarCategoriaActivity extends ActionBarActivity {
+public class CadastrarCategoriaActivity extends Activity {
 
     private TextView txtNomeCategoria;
     private Spinner comboTipoFinanceiro;

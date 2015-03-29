@@ -13,7 +13,7 @@ import android.view.MenuItem;
 import coddi.com.br.coddi.R;
 import coddi.com.br.view.activity.login.LoginActivity;
 import coddi.com.br.view.activity.login.LoginConstants;
-import coddi.com.br.view.fragment.ContaFragment;
+import coddi.com.br.view.activity.main.fragment.MainActivityFragment;
 
 
 public class MainActivity extends ActionBarActivity implements NavigationDrawerFragment.NavigationDrawerCallbacks {
@@ -51,7 +51,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
     public void onNavigationDrawerItemSelected(int position) {
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.container, ContaFragment.newInstance(position)).commit();
+        fragmentManager.beginTransaction().replace(R.id.container, MainActivityFragment.newInstance(position)).commit();
 
     }
 
@@ -71,9 +71,6 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         if (!mNavigationDrawerFragment.isDrawerOpen()) {
-            // Only show items in the action bar relevant to this screen
-            // if the drawer is not showing. Otherwise, let the drawer
-            // decide what to show in the action bar.
             getMenuInflater().inflate(R.menu.main, menu);
             restoreActionBar();
             return true;

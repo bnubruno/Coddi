@@ -1,5 +1,6 @@
 package coddi.com.br.model;
 
+import com.j256.ormlite.field.DataType;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
@@ -13,6 +14,10 @@ public class Categoria {
     private Long id;
     @DatabaseField
     private String nome;
+
+    @DatabaseField(dataType = DataType.ENUM_STRING)
+    private TipoFinanceiro tipoFinanceiro;
+
     @DatabaseField
     private int version;
 

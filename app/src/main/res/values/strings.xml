@@ -14,6 +14,12 @@
         <item>Contas</item>
         <item>Categorias</item>
     </string-array>
+
     <string name="title_section3">Configurações</string>
+    <string name="action_add_categoria">+Cat</string>
+    <string name="title_activity_cadastrar_categoria">CadastrarCategoriaActivity</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="categoria_nome">Nome</string>
+    <string name="cadastrar_caterogias_titulo">+ Categoria</string>
 
 </resources>

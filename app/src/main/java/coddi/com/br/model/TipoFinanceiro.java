@@ -1,5 +1,6 @@
 package coddi.com.br.model;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -8,18 +9,19 @@ import java.util.List;
  */
 public enum TipoFinanceiro {
 
-    ENTRADA("E", "Entrada"), //
-    SAÍDA("S", "Saída");
+    ENTRADA(1, "Entrada"), //
+    SAÍDA(2, "Saída"),
+    AMBOS(3, "Ambos");
 
-    private String id;
+    private Integer id;
     private String descricao;
 
-    TipoFinanceiro(String id, String descricao) {
+    TipoFinanceiro(Integer id, String descricao) {
         this.id = id;
         this.descricao = descricao;
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -29,7 +31,7 @@ public enum TipoFinanceiro {
 
     @Override
     public String toString() {
-        return id + " " + descricao;
+        return id + " - " + descricao;
     }
 
     public static List<TipoFinanceiro> getLista() {
@@ -38,11 +40,23 @@ public enum TipoFinanceiro {
 
     public static TipoFinanceiro converte(String tipoFinanceiro) {
         for (TipoFinanceiro tipo : getLista()) {
-            if (tipo.getDescricao().equalsIgnoreCase(tipoFinanceiro)) {
+            if (tipo.toString().equalsIgnoreCase(tipoFinanceiro)) {
                 return tipo;
             }
         }
         return null;
+    }
+
+    public static List<String> getListaString() {
+        List<String> listaAux = new ArrayList<>();
+
+        for (TipoFinanceiro tipo : getLista()) {
+            listaAux.add(tipo.toString());
+        }
+
+        listaAux.add("Tipo:");
+
+        return listaAux;
     }
 
 }

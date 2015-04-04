@@ -4,11 +4,12 @@ import java.util.List;
 
 import coddi.com.br.App.CoddiApplication;
 import coddi.com.br.dao.IDao;
+import coddi.com.br.model.AbstractPojo;
 
 /**
  * Created by Bruno on 02/02/2015.
  */
-public class AbstractBO<E, F> implements IBusinessObject<E, F> {
+public class AbstractBO<E extends AbstractPojo, F> implements IBusinessObject<E, F> {
 
     private IDao<E, F> dao;
     private CoddiApplication context;
@@ -56,11 +57,18 @@ public class AbstractBO<E, F> implements IBusinessObject<E, F> {
 
     @Override
     public void incluir(E objeto) {
+        if (objeto.getId() != null) {
+            throw new NullPointerException("ID do pojo deve ser nulo.");
+        }
         dao.incluir(objeto);
     }
 
     @Override
     public void alterar(E objeto) {
+        if (objeto.getId() == null) {
+            throw new NullPointerException("ID do pojo não deve ser nulo.");
+        }
+
         dao.alterar(objeto);
     }
 

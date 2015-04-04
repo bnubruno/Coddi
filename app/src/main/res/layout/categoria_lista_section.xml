@@ -1,0 +1,17 @@
+<LinearLayout
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/preto">
+
+    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="31dp"
+              android:textAppearance="?android:attr/textAppearanceListItemSmall"
+              android:gravity="center_vertical"
+              android:minHeight="?android:attr/listPreferredItemHeightSmall"
+              android:id="@+id/txtNomeCategoriaSection"
+              android:textColor="@color/branco"
+              android:layout_marginLeft="20dp"
+              android:textSize="25px"/>
+</LinearLayout>

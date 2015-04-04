@@ -7,7 +7,7 @@ import com.j256.ormlite.table.DatabaseTable;
  * Created by Bruno on 01/02/2015.
  */
 @DatabaseTable(tableName = "Usuario")
-public class Usuario {
+public class Usuario extends AbstractPojo {
 
     @DatabaseField(id = true)
     private Long id;

@@ -12,11 +12,14 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import coddi.com.br.Adapter.ListViewCategoriaAdapter;
 import coddi.com.br.coddi.R;
+import coddi.com.br.controller.BOPool;
+import coddi.com.br.model.Categoria;
+import coddi.com.br.model.TipoFinanceiro;
 import coddi.com.br.view.activity.categoria.CadastrarCategoriaActivity;
 
 /**
@@ -24,24 +27,36 @@ import coddi.com.br.view.activity.categoria.CadastrarCategoriaActivity;
  */
 public class CategoriaFragment extends MainActivityFragment {
 
+    private BOPool pool;
+    private ListView lista;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = null;
         setHasOptionsMenu(true);
 
+        pool = BOPool.getInstance((coddi.com.br.App.CoddiApplication) getActivity().getApplicationContext());
+
+        List<Categoria> listaEntrada = pool.getCategoriaBO().buscarPorTipoFinanceiro(TipoFinanceiro.ENTRADA);
+        List<Categoria> listaSaida = pool.getCategoriaBO().buscarPorTipoFinanceiro(TipoFinanceiro.SAÍDA);
+
         rootView = inflater.inflate(R.layout.fragment_categorias, container, false);
 
-        String[] values = new String[]{"Refeição", "Supermecardo", "Combustível"};
-
-        ArrayList<String> list = new ArrayList<String>();
-        for (int i = 0; i < values.length; ++i) {
-            list.add(values[i]);
-        }
-        StableArrayAdapter adapter = new StableArrayAdapter(rootView.getContext(), android.R.layout.simple_list_item_1, list);
-        ListView listView = (ListView) rootView.findViewById(R.id.listCategorias);
-        listView.setAdapter(adapter);
+        lista = (ListView) rootView.findViewById(R.id.listCategorias);
+        ListViewCategoriaAdapter adapter = new ListViewCategoriaAdapter(getActivity().getApplicationContext(), listaEntrada, listaSaida);
+        lista.setAdapter(adapter);
 
         return rootView;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        List<Categoria> listaEntrada = pool.getCategoriaBO().buscarPorTipoFinanceiro(TipoFinanceiro.ENTRADA);
+        List<Categoria> listaSaida = pool.getCategoriaBO().buscarPorTipoFinanceiro(TipoFinanceiro.SAÍDA);
+
+        ((ListViewCategoriaAdapter) lista.getAdapter()).atualizaLista(listaEntrada, listaSaida);
     }
 
     @Override
@@ -63,6 +78,7 @@ public class CategoriaFragment extends MainActivityFragment {
         }
         return super.onOptionsItemSelected(item);
     }
+
 
     private class StableArrayAdapter extends ArrayAdapter<String> {
 

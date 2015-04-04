@@ -8,14 +8,14 @@ import com.j256.ormlite.table.DatabaseTable;
  * Created by Bruno on 02/02/2015.
  */
 @DatabaseTable(tableName = "Categoria")
-public class Categoria {
+public class Categoria extends AbstractPojo {
 
     @DatabaseField(id = true)
     private Long id;
     @DatabaseField
     private String nome;
 
-    @DatabaseField(dataType = DataType.ENUM_STRING)
+    @DatabaseField(dataType = DataType.ENUM_INTEGER)
     private TipoFinanceiro tipoFinanceiro;
 
     @DatabaseField
@@ -43,5 +43,13 @@ public class Categoria {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public TipoFinanceiro getTipoFinanceiro() {
+        return tipoFinanceiro;
+    }
+
+    public void setTipoFinanceiro(TipoFinanceiro tipoFinanceiro) {
+        this.tipoFinanceiro = tipoFinanceiro;
     }
 }

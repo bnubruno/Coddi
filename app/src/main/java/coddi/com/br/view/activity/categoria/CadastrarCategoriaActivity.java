@@ -10,11 +10,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import coddi.com.br.Adapter.SpinnerArrayAdapter;
 import coddi.com.br.coddi.R;
+import coddi.com.br.controller.BOPool;
+import coddi.com.br.model.Categoria;
 import coddi.com.br.model.TipoFinanceiro;
 
 public class CadastrarCategoriaActivity extends Activity {
@@ -24,21 +23,20 @@ public class CadastrarCategoriaActivity extends Activity {
     private Button btnCadastrarCategoria;
     private SpinnerArrayAdapter spinnerAdapter;
 
+    private BOPool pool;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastrar_categoria);
         setTitle(R.string.cadastrar_caterogias_titulo);
 
+        pool = BOPool.getInstance((coddi.com.br.App.CoddiApplication) getApplicationContext());
+
         txtNomeCategoria = (TextView) findViewById(R.id.txtNomeCategoria);
 
-        List<String> lista = new ArrayList<>();
-        lista.add("Receber");
-        lista.add("Pagar");
-        lista.add("Tipo:");
-
         comboTipoFinanceiro = (Spinner) findViewById(R.id.comboTipoFinanceiro);
-        spinnerAdapter = new SpinnerArrayAdapter(getApplicationContext(), lista);
+        spinnerAdapter = new SpinnerArrayAdapter(getApplicationContext(), TipoFinanceiro.getListaString());
         spinnerAdapter.setDropDownViewResource(R.layout.spinner_drop_down);
         comboTipoFinanceiro.setAdapter(spinnerAdapter);
         comboTipoFinanceiro.setSelection(this.spinnerAdapter.getCount());
@@ -52,15 +50,24 @@ public class CadastrarCategoriaActivity extends Activity {
                 String nome = txtNomeCategoria.getText().toString();
 
                 if (nome.trim().isEmpty()) {
-                    txtNomeCategoria.setError("Nome é obrigatório.");
+                    Toast.makeText(getApplicationContext(), "Ops! Precisa informar o nome da categoria.", Toast.LENGTH_LONG);
+                    return;
                 }
 
                 TipoFinanceiro tipoFinanceiro = TipoFinanceiro.converte(tipoFinanceiroAux);
                 if (tipoFinanceiro == null) {
-                    spinnerAdapter.setError(comboTipoFinanceiro.getSelectedView(), "Informe o tipo.");
+                    Toast.makeText(getApplicationContext(), "Ops! Precisa informar o nome da categoria.", Toast.LENGTH_LONG);
+                    return;
                 }
 
-                Toast.makeText(getApplicationContext(), "Tipo financeiro: " + tipoFinanceiro + ". Nome: " + nome + ".", Toast.LENGTH_SHORT).show();
+                Categoria categoria = new Categoria();
+                categoria.setNome(nome);
+                categoria.setTipoFinanceiro(tipoFinanceiro);
+
+                pool.getCategoriaBO().incluir(categoria);
+                Toast.makeText(getApplicationContext(), "Registro incluído com sucesso.", Toast.LENGTH_LONG);
+
+                finish();
             }
         });
 

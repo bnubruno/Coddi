@@ -18,7 +18,7 @@ import coddi.com.br.model.Usuario;
 public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
     private static final String DATABASE_NAME = "coddi.sqlite";
-    private static final int DATABASE_VERSION = 12;
+    private static final int DATABASE_VERSION = 13;
 
 
     public DatabaseHelper(Context context) {

@@ -3,6 +3,7 @@ package coddi.com.br.view.activity.main;
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.content.res.Configuration;
+import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
@@ -18,6 +19,7 @@ import java.util.List;
 
 import coddi.com.br.coddi.R;
 import coddi.com.br.view.activity.main.fragment.CategoriaFragment;
+import coddi.com.br.view.activity.main.fragment.ContaFragment;
 
 
 public class MainActivity extends Activity {
@@ -38,9 +40,20 @@ public class MainActivity extends Activity {
 
         mTitle = mDrawerTitle = getTitle();
 
+        TypedArray arrayIcons = getResources().obtainTypedArray(R.array.nav_drawer_icons);
+
+        int icone = 0;
         List<NavigationDrawerItem> itens = new ArrayList<>();
+
         itens.add(new NavigationDrawerItem("Cadastros", true));
-        itens.add(new NavigationDrawerItem("Categorias"));
+        itens.add(new NavigationDrawerItem("Conta", arrayIcons.getResourceId(icone++, -1)));
+        itens.add(new NavigationDrawerItem("Categoria", arrayIcons.getResourceId(icone++, -1)));
+        itens.add(new NavigationDrawerItem("Operações", true));
+        itens.add(new NavigationDrawerItem("Saque", arrayIcons.getResourceId(icone++, -1)));
+        itens.add(new NavigationDrawerItem("Depósito", arrayIcons.getResourceId(icone++, -1)));
+        itens.add(new NavigationDrawerItem("Transferência", arrayIcons.getResourceId(icone++, -1)));
+        itens.add(new NavigationDrawerItem("Consultas", true));
+        itens.add(new NavigationDrawerItem("Resultado", arrayIcons.getResourceId(icone++, -1)));
         mPlanetTitles = itens;
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -124,6 +137,18 @@ public class MainActivity extends Activity {
 
     private void selectItem(int position) {
         if (position == 1) {
+            ContaFragment fragment = new ContaFragment();
+
+            FragmentManager fragmentManager = getFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
+
+            // update selected item and title, then close the drawer
+            mDrawerList.setItemChecked(position, true);
+            setTitle(mPlanetTitles.get(position).getTitulo());
+            mDrawerLayout.closeDrawer(mDrawerList);
+        }
+
+        if (position == 2) {
             CategoriaFragment fragment = new CategoriaFragment();
 
             FragmentManager fragmentManager = getFragmentManager();

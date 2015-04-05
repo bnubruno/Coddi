@@ -12,14 +12,25 @@
     <string-array name="Sections">
         <item>Coddi</item>
         <item>Contas</item>
-        <item>Categorias</item>
+        <item>Categoria</item>
     </string-array>
+
+    <array name="nav_drawer_icons">
+        <item>@drawable/conta</item>
+        <item>@drawable/categoria</item>
+        <item>@drawable/saque</item>
+        <item>@drawable/deposito</item>
+        <item>@drawable/transferencia</item>
+        <item>@drawable/resultado</item>
+    </array>
 
     <string name="title_section3">Configurações</string>
     <string name="action_add_categoria">+Cat</string>
-    <string name="title_activity_cadastrar_categoria">CadastrarCategoriaActivity</string>
+    <string name="title_activity_cadastrar_categoria">+ Categoria</string>
     <string name="hello_world">Hello world!</string>
     <string name="categoria_nome">Nome</string>
-    <string name="cadastrar_caterogias_titulo">+ Categoria</string>
+    <string name="cadastrar_caterogias_titulo"></string>
+    <string name="itemicon">ItemIcon</string>
+    <string name="title_activity_cadastrar_conta">+ Conta</string>
 
 </resources>

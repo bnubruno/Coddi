@@ -21,6 +21,6 @@ public interface IBusinessObject<E, F> {
 
     public void excluir(E objeto);
 
-    public IDao<E, F> getDao();
+    public void inativar(E objeto);
 
 }

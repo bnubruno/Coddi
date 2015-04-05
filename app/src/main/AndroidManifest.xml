@@ -11,7 +11,7 @@
     <application
         android:name="coddi.com.br.App.CoddiApplication"
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/financeiro"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
@@ -31,6 +31,10 @@
         <activity
             android:name="coddi.com.br.view.activity.categoria.CadastrarCategoriaActivity"
             android:label="@string/title_activity_cadastrar_categoria" >
+        </activity>
+        <activity
+            android:name="coddi.com.br.view.activity.conta.CadastrarContaActivity"
+            android:label="@string/title_activity_cadastrar_conta" >
         </activity>
     </application>
 

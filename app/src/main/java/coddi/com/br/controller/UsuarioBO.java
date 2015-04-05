@@ -20,7 +20,7 @@ public class UsuarioBO extends AbstractBO {
     }
 
     @Override
-    public UsuarioDAO getDao() {
+    protected UsuarioDAO getDao() {
         return (UsuarioDAO) super.getDao();
     }
 }

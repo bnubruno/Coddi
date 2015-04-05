@@ -22,7 +22,7 @@ public class CategoriaBO extends AbstractBO {
     }
 
     @Override
-    public CategoriaDAO getDao() {
+    protected CategoriaDAO getDao() {
         return (CategoriaDAO) super.getDao();
     }
 }

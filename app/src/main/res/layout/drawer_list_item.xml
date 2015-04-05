@@ -4,13 +4,25 @@
                 android:id="@+id/drawerListItem"
                 android:background="@color/branco">
 
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:contentDescription="@string/itemicon"
+        android:src="@drawable/categoria"
+        android:layout_centerVertical="true"/>
+
     <TextView
         android:id="@+id/txtTitulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/icon"
         android:minHeight="?android:attr/listPreferredItemHeightSmall"
         android:textSize="16sp"
-        android:layout_marginLeft="12dp"
+        android:layout_marginLeft="2dp"
         android:layout_marginRight="12dp"
         android:textColor="@color/list_item_title"
         android:gravity="center_vertical"

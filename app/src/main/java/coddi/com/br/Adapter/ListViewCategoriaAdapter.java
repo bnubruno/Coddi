@@ -22,7 +22,7 @@ public class ListViewCategoriaAdapter extends BaseAdapter {
     private Context context;
     private List<Categoria> listaEntrada;
     private List<Categoria> listaSaida;
-    private List<Item> listaUnificada;
+    private List<ItemListCategoria> listaUnificada;
 
     public ListViewCategoriaAdapter(Context context, List<Categoria> listaEntrada, List<Categoria> listaSaida) {
         this.context = context;
@@ -43,16 +43,16 @@ public class ListViewCategoriaAdapter extends BaseAdapter {
         this.listaSaida = listaSaida;
 
         this.listaUnificada = new ArrayList<>();
-        this.listaUnificada.add(new Item(":: Entrada"));
+        this.listaUnificada.add(new ItemListCategoria("Categorias de entrada"));
 
         for (Categoria categoriaE : listaEntrada) {
-            this.listaUnificada.add(new Item(categoriaE));
+            this.listaUnificada.add(new ItemListCategoria(categoriaE));
         }
 
-        this.listaUnificada.add(new Item(":: Saída"));
+        this.listaUnificada.add(new ItemListCategoria("Categorias de saída"));
 
         for (Categoria categoriaS : listaSaida) {
-            this.listaUnificada.add(new Item(categoriaS));
+            this.listaUnificada.add(new ItemListCategoria(categoriaS));
         }
     }
 
@@ -74,19 +74,19 @@ public class ListViewCategoriaAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        Item item = listaUnificada.get(position);
+        ItemListCategoria itemListCategoria = listaUnificada.get(position);
 
-        if (item.getTipoItem() == TipoItem.N) {
-            convertView = getViewNormal(convertView, item);
-        } else if (item.getTipoItem() == TipoItem.S) {
-            convertView = getViewSection(convertView, item);
+        if (itemListCategoria.getTipoItem() == TipoItem.N) {
+            convertView = getViewNormal(convertView, itemListCategoria);
+        } else if (itemListCategoria.getTipoItem() == TipoItem.S) {
+            convertView = getViewSection(convertView, itemListCategoria);
         }
 
         return convertView;
     }
 
-    private View getViewNormal(View convertView, Item item) {
-        Categoria categoria = item.getCategoria();
+    private View getViewNormal(View convertView, ItemListCategoria itemListCategoria) {
+        Categoria categoria = itemListCategoria.getCategoria();
 
         LayoutInflater mInflater = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         convertView = mInflater.inflate(R.layout.categoria_lista_item, null);
@@ -96,8 +96,8 @@ public class ListViewCategoriaAdapter extends BaseAdapter {
         return convertView;
     }
 
-    private View getViewSection(View convertView, Item item) {
-        String descricao = item.getDescricao();
+    private View getViewSection(View convertView, ItemListCategoria itemListCategoria) {
+        String descricao = itemListCategoria.getDescricao();
 
         LayoutInflater mInflater = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         convertView = mInflater.inflate(R.layout.categoria_lista_section, null);
@@ -109,19 +109,19 @@ public class ListViewCategoriaAdapter extends BaseAdapter {
         return convertView;
     }
 
-    private class Item {
+    public class ItemListCategoria {
 
         private String descricao;
         private Categoria categoria;
         private TipoItem tipoItem;
 
-        public Item(Categoria categoria) {
+        public ItemListCategoria(Categoria categoria) {
             this.descricao = null;
             this.categoria = categoria;
             this.tipoItem = TipoItem.N;
         }
 
-        public Item(String descricao) {
+        public ItemListCategoria(String descricao) {
             this.categoria = null;
             this.tipoItem = TipoItem.S;
             this.descricao = descricao;
@@ -147,5 +147,9 @@ public class ListViewCategoriaAdapter extends BaseAdapter {
     public void atualizaLista(List<Categoria> listaEntrada, List<Categoria> listaSaida) {
         unifica(listaEntrada, listaSaida);
         notifyDataSetChanged();
+    }
+
+    public List<ItemListCategoria> getListaUnificada() {
+        return listaUnificada;
     }
 }

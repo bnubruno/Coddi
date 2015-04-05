@@ -14,6 +14,7 @@ public class BOPool {
     private CoddiApplication context;
     private static CategoriaBO categoriaBO;
     private static UsuarioBO usuarioBO;
+    private static ContaBO contaBO;
 
     public BOPool(CoddiApplication context) {
         this.context = context;
@@ -39,6 +40,17 @@ public class BOPool {
             }
         }
         return usuarioBO;
+    }
+
+    public ContaBO getContaBO() {
+        if (contaBO == null) {
+            try {
+                contaBO = new ContaBO(context);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return contaBO;
     }
 
 

@@ -15,17 +15,16 @@ import android.widget.Toast;
 
 import java.util.List;
 
-import coddi.com.br.Adapter.ListViewCategoriaAdapter;
+import coddi.com.br.Adapter.ListViewContaAdapter;
 import coddi.com.br.coddi.R;
 import coddi.com.br.controller.BOPool;
-import coddi.com.br.model.Categoria;
-import coddi.com.br.model.TipoFinanceiro;
-import coddi.com.br.view.activity.categoria.CadastrarCategoriaActivity;
+import coddi.com.br.model.Conta;
+import coddi.com.br.view.activity.conta.CadastrarContaActivity;
 
 /**
  * Created by Bruno on 28/03/2015.
  */
-public class CategoriaFragment extends MainActivityFragment {
+public class ContaFragment extends MainActivityFragment {
 
     private BOPool pool;
     private ListView lista;
@@ -37,13 +36,12 @@ public class CategoriaFragment extends MainActivityFragment {
 
         pool = BOPool.getInstance((coddi.com.br.App.CoddiApplication) getActivity().getApplicationContext());
 
-        List<Categoria> listaEntrada = pool.getCategoriaBO().buscarPorTipoFinanceiro(TipoFinanceiro.ENTRADA);
-        List<Categoria> listaSaida = pool.getCategoriaBO().buscarPorTipoFinanceiro(TipoFinanceiro.SAÍDA);
+        rootView = inflater.inflate(R.layout.fragment_contas, container, false);
 
-        rootView = inflater.inflate(R.layout.fragment_categorias, container, false);
+        List<Conta> contas = pool.getContaBO().buscarTodosAtivos();
 
-        lista = (ListView) rootView.findViewById(R.id.listCategorias);
-        ListViewCategoriaAdapter adapter = new ListViewCategoriaAdapter(getActivity().getApplicationContext(), listaEntrada, listaSaida);
+        lista = (ListView) rootView.findViewById(R.id.listContas);
+        ListViewContaAdapter adapter = new ListViewContaAdapter(getActivity().getApplicationContext(), contas);
         lista.setAdapter(adapter);
 
         registerForContextMenu(lista);
@@ -51,12 +49,17 @@ public class CategoriaFragment extends MainActivityFragment {
         return rootView;
     }
 
+    private void atualizaLista() {
+        List<Conta> list = pool.getContaBO().buscarTodosAtivos();
+        ((ListViewContaAdapter) lista.getAdapter()).atualizaLista(list);
+    }
+
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-        if (v.getId() == R.id.listCategorias) {
+        if (v.getId() == R.id.listContas) {
             AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
-            ListViewCategoriaAdapter adapter = (ListViewCategoriaAdapter) lista.getAdapter();
-            menu.setHeaderTitle(adapter.getListaUnificada().get(info.position).getCategoria().getNome());
+            ListViewContaAdapter adapter = (ListViewContaAdapter) lista.getAdapter();
+            menu.setHeaderTitle(adapter.getLista().get(info.position).getNome());
 
             menu.add(Menu.NONE, 0, 0, "Deletar");
         }
@@ -68,12 +71,12 @@ public class CategoriaFragment extends MainActivityFragment {
         int menuItemIndex = item.getItemId();
 
         if (menuItemIndex == 0) {
-            ListViewCategoriaAdapter adapter = (ListViewCategoriaAdapter) lista.getAdapter();
-            Categoria categoriaDeletada = adapter.getListaUnificada().get(info.position).getCategoria();
+            ListViewContaAdapter adapter = (ListViewContaAdapter) lista.getAdapter();
+            Conta contaDeletada = adapter.getLista().get(info.position);
 
-            pool.getCategoriaBO().inativar(categoriaDeletada);
+            pool.getContaBO().inativar(contaDeletada);
             atualizaLista();
-            Toast.makeText(getActivity().getApplicationContext(), "Pronto! Categoria \"" + categoriaDeletada.getNome() + "\" deletada com sucesso.", Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity().getApplicationContext(), "Pronto! Conta \"" + contaDeletada.getNome() + "\" deletada com sucesso.", Toast.LENGTH_LONG).show();
         }
 
         return true;
@@ -82,20 +85,12 @@ public class CategoriaFragment extends MainActivityFragment {
     @Override
     public void onResume() {
         super.onResume();
-
         atualizaLista();
-    }
-
-    private void atualizaLista() {
-        List<Categoria> listaEntrada = pool.getCategoriaBO().buscarPorTipoFinanceiro(TipoFinanceiro.ENTRADA);
-        List<Categoria> listaSaida = pool.getCategoriaBO().buscarPorTipoFinanceiro(TipoFinanceiro.SAÍDA);
-
-        ((ListViewCategoriaAdapter) lista.getAdapter()).atualizaLista(listaEntrada, listaSaida);
     }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        MenuItem m2 = menu.add(1, 1, 1, "+Cat");
+        MenuItem m2 = menu.add(1, 1, 1, "+Conta");
         m2.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
 
         super.onCreateOptionsMenu(menu, inflater);
@@ -105,12 +100,13 @@ public class CategoriaFragment extends MainActivityFragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case 1:
-                Intent j = new Intent(getActivity(), CadastrarCategoriaActivity.class);
+                Intent j = new Intent(getActivity(), CadastrarContaActivity.class);
                 startActivity(j);
 
                 break;
         }
         return super.onOptionsItemSelected(item);
     }
+
 
 }

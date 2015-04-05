@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -59,8 +60,10 @@ public class NavigationDrawerItemAdapter extends BaseAdapter {
     private View buscarViewItem(NavigationDrawerItem item) {
         View view = mInflater.inflate(R.layout.drawer_list_item, null);
 
+        ImageView txtImagem = (ImageView) view.findViewById(R.id.icon);
         TextView txtTitulo = (TextView) view.findViewById(R.id.txtTitulo);
         txtTitulo.setText(item.getTitulo());
+        txtImagem.setImageResource(item.getIcone());
 
         return view;
     }

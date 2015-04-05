@@ -15,6 +15,7 @@ import coddi.com.br.coddi.R;
 import coddi.com.br.controller.BOPool;
 import coddi.com.br.model.Categoria;
 import coddi.com.br.model.TipoFinanceiro;
+import coddi.com.br.model.TipoStatus;
 
 public class CadastrarCategoriaActivity extends Activity {
 
@@ -29,7 +30,6 @@ public class CadastrarCategoriaActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastrar_categoria);
-        setTitle(R.string.cadastrar_caterogias_titulo);
 
         pool = BOPool.getInstance((coddi.com.br.App.CoddiApplication) getApplicationContext());
 
@@ -56,13 +56,14 @@ public class CadastrarCategoriaActivity extends Activity {
 
                 TipoFinanceiro tipoFinanceiro = TipoFinanceiro.converte(tipoFinanceiroAux);
                 if (tipoFinanceiro == null) {
-                    Toast.makeText(getApplicationContext(), "Ops! Precisa informar o nome da categoria.", Toast.LENGTH_LONG);
+                    Toast.makeText(getApplicationContext(), "Ops! Precisa informar o tipo financeiro da categoria.", Toast.LENGTH_LONG);
                     return;
                 }
 
                 Categoria categoria = new Categoria();
                 categoria.setNome(nome);
                 categoria.setTipoFinanceiro(tipoFinanceiro);
+                categoria.setStatus(TipoStatus.ATIVO);
 
                 pool.getCategoriaBO().incluir(categoria);
                 Toast.makeText(getApplicationContext(), "Registro incluído com sucesso.", Toast.LENGTH_LONG);

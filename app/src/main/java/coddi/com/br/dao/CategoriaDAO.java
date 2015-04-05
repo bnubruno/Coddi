@@ -9,6 +9,7 @@ import java.util.List;
 
 import coddi.com.br.model.Categoria;
 import coddi.com.br.model.TipoFinanceiro;
+import coddi.com.br.model.TipoStatus;
 
 /**
  * Created by Bruno on 14/03/2015.
@@ -24,7 +25,8 @@ public class CategoriaDAO extends AbstractDAO<Categoria, Long> {
         try {
             QueryBuilder<Categoria, Long> qb = queryBuilder();
             Where where = qb.where();
-            where.or(where.eq("tipoFinanceiro", tipoFinanceiro), where.eq("tipoFinanceiro", TipoFinanceiro.AMBOS));
+            where.and(where.or(where.eq("tipoFinanceiro", tipoFinanceiro), where.eq("tipoFinanceiro", TipoFinanceiro.AMBOS)), where.eq("status", TipoStatus.ATIVO));
+            qb.orderBy("nome", true);
             list = qb.query();
 
         } catch (SQLException e) {

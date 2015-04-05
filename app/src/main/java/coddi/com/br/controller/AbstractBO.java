@@ -5,6 +5,7 @@ import java.util.List;
 import coddi.com.br.App.CoddiApplication;
 import coddi.com.br.dao.IDao;
 import coddi.com.br.model.AbstractPojo;
+import coddi.com.br.model.TipoStatus;
 
 /**
  * Created by Bruno on 02/02/2015.
@@ -77,8 +78,14 @@ public class AbstractBO<E extends AbstractPojo, F> implements IBusinessObject<E,
         dao.excluir(objeto);
     }
 
-    @Override
-    public IDao<E, F> getDao() {
+    protected IDao<E, F> getDao() {
         return dao;
+    }
+
+    @Override
+    public void inativar(E objeto) {
+        objeto.setStatus(TipoStatus.INATIVO);
+
+        dao.alterar(objeto);
     }
 }

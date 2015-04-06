@@ -74,9 +74,7 @@ public class CadastrarContaActivity extends Activity {
             }
         });
 
-
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

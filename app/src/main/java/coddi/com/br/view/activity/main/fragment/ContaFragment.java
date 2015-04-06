@@ -59,7 +59,7 @@ public class ContaFragment extends MainActivityFragment {
         if (v.getId() == R.id.listContas) {
             AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
             ListViewContaAdapter adapter = (ListViewContaAdapter) lista.getAdapter();
-            menu.setHeaderTitle(adapter.getLista().get(info.position).getNome());
+            menu.setHeaderTitle(adapter.getLista().get(info.position).getConta().getNome());
 
             menu.add(Menu.NONE, 0, 0, "Deletar");
         }
@@ -72,7 +72,7 @@ public class ContaFragment extends MainActivityFragment {
 
         if (menuItemIndex == 0) {
             ListViewContaAdapter adapter = (ListViewContaAdapter) lista.getAdapter();
-            Conta contaDeletada = adapter.getLista().get(info.position);
+            Conta contaDeletada = adapter.getLista().get(info.position).getConta();
 
             pool.getContaBO().inativar(contaDeletada);
             atualizaLista();

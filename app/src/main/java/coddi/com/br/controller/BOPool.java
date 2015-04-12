@@ -15,6 +15,7 @@ public class BOPool {
     private static CategoriaBO categoriaBO;
     private static UsuarioBO usuarioBO;
     private static ContaBO contaBO;
+    private static LancamentoBO lancamentoBO;
 
     public BOPool(CoddiApplication context) {
         this.context = context;
@@ -51,6 +52,18 @@ public class BOPool {
             }
         }
         return contaBO;
+    }
+
+
+    public LancamentoBO getLancamentoBO() {
+        if (lancamentoBO == null) {
+            try {
+                lancamentoBO = new LancamentoBO(context);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return lancamentoBO;
     }
 
 

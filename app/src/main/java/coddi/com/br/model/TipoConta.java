@@ -9,7 +9,9 @@ import java.util.List;
  */
 public enum TipoConta {
     POUPANCA(1, "Poupança"), //
-    CORRENTE(2, "Conta-corrente");
+    CORRENTE(2, "Conta-corrente"),
+    CARTAO_CREDITO(3, "Cartão de crédito"),
+    CARTAO_DEBITO(4, "Cartão de débito");
 
     private Integer id;
     private String descricao;

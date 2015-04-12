@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import coddi.com.br.dao.CategoriaDAO;
 import coddi.com.br.model.Categoria;
 import coddi.com.br.model.Conta;
+import coddi.com.br.model.Lancamento;
 import coddi.com.br.model.TipoFinanceiro;
 import coddi.com.br.model.Usuario;
 
@@ -21,7 +22,7 @@ import coddi.com.br.model.Usuario;
 public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
     private static final String DATABASE_NAME = "coddi.sqlite";
-    private static final int DATABASE_VERSION = 25;
+    private static final int DATABASE_VERSION = 26;
 
 
     public DatabaseHelper(Context context) {
@@ -34,6 +35,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
             TableUtils.createTable(connectionSource, Usuario.class);
             TableUtils.createTable(connectionSource, Categoria.class);
             TableUtils.createTable(connectionSource, Conta.class);
+            TableUtils.createTable(connectionSource, Lancamento.class);
 
             CategoriaDAO categoriaDAO = new CategoriaDAO(connectionSource);
             Categoria categoria = new Categoria();
@@ -102,6 +104,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
             TableUtils.dropTable(connectionSource, Usuario.class, true);
             TableUtils.dropTable(connectionSource, Categoria.class, true);
             TableUtils.dropTable(connectionSource, Conta.class, true);
+            TableUtils.dropTable(connectionSource, Lancamento.class, true);
 
             onCreate(database, connectionSource);
         } catch (SQLException e) {

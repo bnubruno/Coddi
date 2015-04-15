@@ -13,16 +13,16 @@ public class NavigationDrawerItem {
     public NavigationDrawerItem() {
     }
 
-    public NavigationDrawerItem(String title, int icone) {
-        this.titulo = title;
-        this.isSection = false;
-        this.icone = icone;
-    }
-
     public NavigationDrawerItem(String titulo, boolean isSection) {
         this.titulo = titulo;
         this.isSection = isSection;
         this.icone = 0;
+    }
+
+    public NavigationDrawerItem(String title, int icone) {
+        this.titulo = title;
+        this.isSection = false;
+        this.icone = icone;
     }
 
     public String getTitulo() {

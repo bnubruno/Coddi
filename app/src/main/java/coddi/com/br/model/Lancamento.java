@@ -31,10 +31,7 @@ public class Lancamento extends AbstractPojo {
     private Long idCategoria;
 
     @DatabaseField
-    private Long idContaOrigem;
-
-    @DatabaseField
-    private Long idContaDestino;
+    private Long idConta;
 
     public String getDescricao() {
         return descricao;
@@ -76,12 +73,12 @@ public class Lancamento extends AbstractPojo {
         this.valor = valor;
     }
 
-    public Long getIdContaOrigem() {
-        return idContaOrigem;
+    public Long getIdConta() {
+        return idConta;
     }
 
-    public void setIdContaOrigem(Long idContaOrigem) {
-        this.idContaOrigem = idContaOrigem;
+    public void setIdConta(Long idConta) {
+        this.idConta = idConta;
     }
 
     public Long getIdCategoria() {
@@ -92,11 +89,4 @@ public class Lancamento extends AbstractPojo {
         this.idCategoria = idCategoria;
     }
 
-    public Long getIdContaDestino() {
-        return idContaDestino;
-    }
-
-    public void setIdContaDestino(Long idContaDestino) {
-        this.idContaDestino = idContaDestino;
-    }
 }

@@ -20,6 +20,7 @@ import java.util.List;
 import coddi.com.br.coddi.R;
 import coddi.com.br.view.activity.main.fragment.CategoriaFragment;
 import coddi.com.br.view.activity.main.fragment.ContaFragment;
+import coddi.com.br.view.activity.main.fragment.TipoMenu;
 
 
 public class MainActivity extends Activity {
@@ -42,18 +43,19 @@ public class MainActivity extends Activity {
 
         TypedArray arrayIcons = getResources().obtainTypedArray(R.array.nav_drawer_icons);
 
-        int icone = 0;
         List<NavigationDrawerItem> itens = new ArrayList<>();
 
         itens.add(new NavigationDrawerItem("Cadastros", true));
-        itens.add(new NavigationDrawerItem("Conta", arrayIcons.getResourceId(icone++, -1)));
-        itens.add(new NavigationDrawerItem("Categoria", arrayIcons.getResourceId(icone++, -1)));
+        itens.add(new NavigationDrawerItem(TipoMenu.CONTA.getDescricao(), arrayIcons.getResourceId(TipoMenu.CONTA.getPosicaoIcone(), -1)));
+        itens.add(new NavigationDrawerItem(TipoMenu.CATEGORIA.getDescricao(), arrayIcons.getResourceId(TipoMenu.CATEGORIA.getPosicaoIcone(), -1)));
         itens.add(new NavigationDrawerItem("Operações", true));
-        itens.add(new NavigationDrawerItem("Saque", arrayIcons.getResourceId(icone++, -1)));
-        itens.add(new NavigationDrawerItem("Depósito", arrayIcons.getResourceId(icone++, -1)));
-        itens.add(new NavigationDrawerItem("Transferência", arrayIcons.getResourceId(icone++, -1)));
+        itens.add(new NavigationDrawerItem(TipoMenu.PAGAMENTO.getDescricao(), arrayIcons.getResourceId(TipoMenu.PAGAMENTO.getPosicaoIcone(), -1)));
+        itens.add(new NavigationDrawerItem(TipoMenu.SAQUE.getDescricao(), arrayIcons.getResourceId(TipoMenu.SAQUE.getPosicaoIcone(), -1)));
+        itens.add(new NavigationDrawerItem(TipoMenu.DEPOSITO.getDescricao(), arrayIcons.getResourceId(TipoMenu.DEPOSITO.getPosicaoIcone(), -1)));
+        itens.add(new NavigationDrawerItem(TipoMenu.TRANSFERENCIA.getDescricao(), arrayIcons.getResourceId(TipoMenu.TRANSFERENCIA.getPosicaoIcone(), -1)));
         itens.add(new NavigationDrawerItem("Consultas", true));
-        itens.add(new NavigationDrawerItem("Resultado", arrayIcons.getResourceId(icone++, -1)));
+        itens.add(new NavigationDrawerItem(TipoMenu.RESULTADO.getDescricao(), arrayIcons.getResourceId(TipoMenu.RESULTADO.getPosicaoIcone(), -1)));
+
         mPlanetTitles = itens;
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -136,7 +138,7 @@ public class MainActivity extends Activity {
     }
 
     private void selectItem(int position) {
-        if (position == 1) {
+        if (position == TipoMenu.CATEGORIA.getId()) {
             ContaFragment fragment = new ContaFragment();
 
             FragmentManager fragmentManager = getFragmentManager();
@@ -148,7 +150,7 @@ public class MainActivity extends Activity {
             mDrawerLayout.closeDrawer(mDrawerList);
         }
 
-        if (position == 2) {
+        if (position == TipoMenu.CONTA.getId()) {
             CategoriaFragment fragment = new CategoriaFragment();
 
             FragmentManager fragmentManager = getFragmentManager();
@@ -158,6 +160,10 @@ public class MainActivity extends Activity {
             mDrawerList.setItemChecked(position, true);
             setTitle(mPlanetTitles.get(position).getTitulo());
             mDrawerLayout.closeDrawer(mDrawerList);
+        }
+
+        if (position == TipoMenu.PAGAMENTO.getId()) {
+
         }
     }
 

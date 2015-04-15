@@ -8,10 +8,11 @@ import java.util.List;
  * Created by Bruno on 04/04/2015.
  */
 public enum TipoConta {
-    POUPANCA(1, "Poupança"), //
-    CORRENTE(2, "Conta-corrente"),
-    CARTAO_CREDITO(3, "Cartão de crédito"),
-    CARTAO_DEBITO(4, "Cartão de débito");
+    CARTEIRA(1, "Carteira"),//
+    POUPANCA(2, "Poupança"), //
+    CORRENTE(3, "Conta-corrente"),
+    CARTAO_CREDITO(4, "Cartão de crédito"),
+    CARTAO_DEBITO(5, "Cartão de débito");
 
     private Integer id;
     private String descricao;

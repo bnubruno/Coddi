@@ -15,17 +15,17 @@ import android.widget.Toast;
 
 import java.util.List;
 
-import coddi.com.br.Adapter.ListViewCategoriaAdapter;
+import coddi.com.br.Adapter.ListViewPagamentoAdapter;
 import coddi.com.br.coddi.R;
 import coddi.com.br.controller.BOPool;
-import coddi.com.br.model.Categoria;
-import coddi.com.br.model.TipoFinanceiro;
-import coddi.com.br.view.activity.categoria.CadastrarCategoriaActivity;
+import coddi.com.br.model.Lancamento;
+import coddi.com.br.model.TipoOperacao;
+import coddi.com.br.view.activity.pagamento.CadastrarPagamentoActivity;
 
 /**
  * Created by Bruno on 28/03/2015.
  */
-public class CategoriaFragment extends MainActivityFragment {
+public class PagamentoFragment extends MainActivityFragment {
 
     private BOPool pool;
     private ListView lista;
@@ -37,13 +37,12 @@ public class CategoriaFragment extends MainActivityFragment {
 
         pool = BOPool.getInstance((coddi.com.br.App.CoddiApplication) getActivity().getApplicationContext());
 
-        List<Categoria> listaEntrada = pool.getCategoriaBO().buscarPorTipoFinanceiro(TipoFinanceiro.ENTRADA);
-        List<Categoria> listaSaida = pool.getCategoriaBO().buscarPorTipoFinanceiro(TipoFinanceiro.SAIDA);
+        List<Lancamento> lancamentos = pool.getLancamentoBO().buscarLancamentosPagamento(TipoOperacao.PAGAMENTO);
 
-        rootView = inflater.inflate(R.layout.fragment_categorias, container, false);
+        rootView = inflater.inflate(R.layout.fragment_pagamentos, container, false);
 
-        lista = (ListView) rootView.findViewById(R.id.listCategorias);
-        ListViewCategoriaAdapter adapter = new ListViewCategoriaAdapter(getActivity().getApplicationContext(), listaEntrada, listaSaida);
+        lista = (ListView) rootView.findViewById(R.id.listPagamentos);
+        ListViewPagamentoAdapter adapter = new ListViewPagamentoAdapter(getActivity().getApplicationContext(), lancamentos);
         lista.setAdapter(adapter);
 
         registerForContextMenu(lista);
@@ -53,10 +52,10 @@ public class CategoriaFragment extends MainActivityFragment {
 
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-        if (v.getId() == R.id.listCategorias) {
+        if (v.getId() == R.id.listPagamentos) {
             AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
-            ListViewCategoriaAdapter adapter = (ListViewCategoriaAdapter) lista.getAdapter();
-            menu.setHeaderTitle(adapter.getListaUnificada().get(info.position).getCategoria().getNome());
+            ListViewPagamentoAdapter adapter = (ListViewPagamentoAdapter) lista.getAdapter();
+            menu.setHeaderTitle(adapter.getLista().get(info.position).getDescricao());
 
             menu.add(Menu.NONE, 0, 0, "Deletar");
         }
@@ -68,12 +67,12 @@ public class CategoriaFragment extends MainActivityFragment {
         int menuItemIndex = item.getItemId();
 
         if (menuItemIndex == 0) {
-            ListViewCategoriaAdapter adapter = (ListViewCategoriaAdapter) lista.getAdapter();
-            Categoria categoriaDeletada = adapter.getListaUnificada().get(info.position).getCategoria();
+            ListViewPagamentoAdapter adapter = (ListViewPagamentoAdapter) lista.getAdapter();
+            Lancamento lancamentoDeletado = adapter.getLista().get(info.position);
 
-            pool.getCategoriaBO().inativar(categoriaDeletada);
+            pool.getUsuarioBO().inativar(lancamentoDeletado);
             atualizaLista();
-            Toast.makeText(getActivity().getApplicationContext(), "Pronto! Categoria \"" + categoriaDeletada.getNome() + "\" deletada com sucesso.", Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity().getApplicationContext(), "Pronto! Lançamento deletado com sucesso.", Toast.LENGTH_LONG).show();
         }
 
         return true;
@@ -87,15 +86,14 @@ public class CategoriaFragment extends MainActivityFragment {
     }
 
     private void atualizaLista() {
-        List<Categoria> listaEntrada = pool.getCategoriaBO().buscarPorTipoFinanceiro(TipoFinanceiro.ENTRADA);
-        List<Categoria> listaSaida = pool.getCategoriaBO().buscarPorTipoFinanceiro(TipoFinanceiro.SAIDA);
+        List<Lancamento> lancamentos = pool.getLancamentoBO().buscarLancamentosPagamento(TipoOperacao.PAGAMENTO);
 
-        ((ListViewCategoriaAdapter) lista.getAdapter()).atualizaLista(listaEntrada, listaSaida);
+        ((ListViewPagamentoAdapter) lista.getAdapter()).atualizaLista(lancamentos);
     }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        MenuItem m2 = menu.add(1, 1, 1, "+Cat");
+        MenuItem m2 = menu.add(1, 1, 1, "+Pag");
         m2.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
 
         super.onCreateOptionsMenu(menu, inflater);
@@ -105,7 +103,7 @@ public class CategoriaFragment extends MainActivityFragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case 1:
-                Intent j = new Intent(getActivity(), CadastrarCategoriaActivity.class);
+                Intent j = new Intent(getActivity(), CadastrarPagamentoActivity.class);
                 startActivity(j);
 
                 break;

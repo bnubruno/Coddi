@@ -39,6 +39,31 @@ public enum TipoConta {
         return Arrays.asList(TipoConta.values());
     }
 
+    public static List<TipoConta> getListaPagamento() {
+        List<TipoConta> lista = Arrays.asList(TipoConta.values());
+
+        List<TipoConta> outraLista = new ArrayList<>();
+        for (TipoConta tipoConta : lista) {
+            if (tipoConta != CORRENTE && tipoConta != POUPANCA) {
+                outraLista.add(tipoConta);
+            }
+        }
+
+        return outraLista;
+    }
+
+    public static List<Integer> getListaPagamentoInteger() {
+        List<TipoConta> lista = getListaPagamento();
+
+        List<Integer> listaInteger = new ArrayList<>();
+        for (TipoConta tipo : lista) {
+            listaInteger.add(tipo.getId());
+        }
+
+        return listaInteger;
+    }
+
+
     public static TipoConta converte(String tipoFinanceiro) {
         for (TipoConta tipo : getLista()) {
             if (tipo.toString().equalsIgnoreCase(tipoFinanceiro)) {

@@ -22,7 +22,7 @@ import coddi.com.br.model.Usuario;
 public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
     private static final String DATABASE_NAME = "coddi.sqlite";
-    private static final int DATABASE_VERSION = 27;
+    private static final int DATABASE_VERSION = 32;
 
 
     public DatabaseHelper(Context context) {
@@ -40,57 +40,62 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
             CategoriaDAO categoriaDAO = new CategoriaDAO(connectionSource);
             Categoria categoria = new Categoria();
             categoria.setNome("Salário");
-            categoria.setTipoFinanceiro(TipoFinanceiro.SAÍDA);
+            categoria.setTipoFinanceiro(TipoFinanceiro.ENTRADA);
             categoriaDAO.incluir(categoria);
 
             categoria = new Categoria();
             categoria.setNome("Bônus");
-            categoria.setTipoFinanceiro(TipoFinanceiro.SAÍDA);
+            categoria.setTipoFinanceiro(TipoFinanceiro.ENTRADA);
             categoriaDAO.incluir(categoria);
 
             categoria = new Categoria();
             categoria.setNome("Subsídio");
-            categoria.setTipoFinanceiro(TipoFinanceiro.SAÍDA);
+            categoria.setTipoFinanceiro(TipoFinanceiro.ENTRADA);
             categoriaDAO.incluir(categoria);
 
             categoria = new Categoria();
             categoria.setNome("Outros");
-            categoria.setTipoFinanceiro(TipoFinanceiro.SAÍDA);
+            categoria.setTipoFinanceiro(TipoFinanceiro.ENTRADA);
             categoriaDAO.incluir(categoria);
 
             categoria = new Categoria();
             categoria.setNome("Alimentação");
-            categoria.setTipoFinanceiro(TipoFinanceiro.ENTRADA);
+            categoria.setTipoFinanceiro(TipoFinanceiro.SAIDA);
             categoriaDAO.incluir(categoria);
 
             categoria = new Categoria();
             categoria.setNome("Eventos");
-            categoria.setTipoFinanceiro(TipoFinanceiro.ENTRADA);
+            categoria.setTipoFinanceiro(TipoFinanceiro.SAIDA);
             categoriaDAO.incluir(categoria);
 
             categoria = new Categoria();
             categoria.setNome("Transporte");
-            categoria.setTipoFinanceiro(TipoFinanceiro.ENTRADA);
+            categoria.setTipoFinanceiro(TipoFinanceiro.SAIDA);
             categoriaDAO.incluir(categoria);
 
             categoria = new Categoria();
             categoria.setNome("Lazer");
-            categoria.setTipoFinanceiro(TipoFinanceiro.ENTRADA);
+            categoria.setTipoFinanceiro(TipoFinanceiro.SAIDA);
             categoriaDAO.incluir(categoria);
 
             categoria = new Categoria();
             categoria.setNome("Vestuário");
-            categoria.setTipoFinanceiro(TipoFinanceiro.ENTRADA);
+            categoria.setTipoFinanceiro(TipoFinanceiro.SAIDA);
             categoriaDAO.incluir(categoria);
 
             categoria = new Categoria();
             categoria.setNome("Saúde");
-            categoria.setTipoFinanceiro(TipoFinanceiro.ENTRADA);
+            categoria.setTipoFinanceiro(TipoFinanceiro.SAIDA);
             categoriaDAO.incluir(categoria);
 
             categoria = new Categoria();
             categoria.setNome("Educação");
-            categoria.setTipoFinanceiro(TipoFinanceiro.ENTRADA);
+            categoria.setTipoFinanceiro(TipoFinanceiro.SAIDA);
+            categoriaDAO.incluir(categoria);
+
+            categoria = new Categoria();
+            categoria.setNome("Movimentação");
+            categoria.setTipoFinanceiro(TipoFinanceiro.MOVIMENTACAO);
             categoriaDAO.incluir(categoria);
 
         } catch (SQLException e) {

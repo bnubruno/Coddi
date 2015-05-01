@@ -1,5 +1,6 @@
 package coddi.com.br.model;
 
+import com.j256.ormlite.field.DataType;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
@@ -32,6 +33,12 @@ public class Lancamento extends AbstractPojo {
 
     @DatabaseField
     private Long idConta;
+
+    @DatabaseField(dataType = DataType.ENUM_INTEGER)
+    private TipoOperacao tipoOperacao;
+
+    private transient Categoria categoria;
+    private transient Conta conta;
 
     public String getDescricao() {
         return descricao;
@@ -89,4 +96,27 @@ public class Lancamento extends AbstractPojo {
         this.idCategoria = idCategoria;
     }
 
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
+
+    public TipoOperacao getTipoOperacao() {
+        return tipoOperacao;
+    }
+
+    public void setTipoOperacao(TipoOperacao tipoOperacao) {
+        this.tipoOperacao = tipoOperacao;
+    }
+
+    public Conta getConta() {
+        return conta;
+    }
+
+    public void setConta(Conta conta) {
+        this.conta = conta;
+    }
 }

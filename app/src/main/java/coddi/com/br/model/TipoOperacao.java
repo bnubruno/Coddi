@@ -7,19 +7,17 @@ import java.util.List;
 /**
  * Created by Bruno on 28/03/2015.
  */
-public enum TipoFinanceiro {
+public enum TipoOperacao {
 
-    ENTRADA(1, "Entrada"), //
-    SAIDA(2, "Saída"),
-    AMBOS(3, "Ambos"),
-    MOVIMENTACAO(4, "Movimentação");
-
-
+    PAGAMENTO(1, "Pagamento"), //
+    SAQUE(2, "Saque"),
+    TRANSFERENCIA(3, "Transferencia"),
+    RECEBIMENTO(4, "Recebimento");
 
     private Integer id;
     private String descricao;
 
-    TipoFinanceiro(Integer id, String descricao) {
+    TipoOperacao(Integer id, String descricao) {
         this.id = id;
         this.descricao = descricao;
     }
@@ -37,22 +35,18 @@ public enum TipoFinanceiro {
         return id + " - " + descricao;
     }
 
-    public static List<TipoFinanceiro> getLista() {
-        List<TipoFinanceiro> lista = Arrays.asList(TipoFinanceiro.values());
-        List<TipoFinanceiro> nova = new ArrayList<>();
+    public static List<TipoOperacao> getLista() {
+        List<TipoOperacao> lista = Arrays.asList(TipoOperacao.values());
+        List<TipoOperacao> nova = new ArrayList<>();
 
-        for (TipoFinanceiro tipo : lista){
-            if(tipo != MOVIMENTACAO){
-                nova.add(tipo);
-            }
+        for (TipoOperacao tipo : lista) {
+            nova.add(tipo);
         }
-
-
         return nova;
     }
 
-    public static TipoFinanceiro converte(String tipoFinanceiro) {
-        for (TipoFinanceiro tipo : getLista()) {
+    public static TipoOperacao converte(String tipoFinanceiro) {
+        for (TipoOperacao tipo : getLista()) {
             if (tipo.toString().equalsIgnoreCase(tipoFinanceiro)) {
                 return tipo;
             }
@@ -63,7 +57,7 @@ public enum TipoFinanceiro {
     public static List<String> getListaString() {
         List<String> listaAux = new ArrayList<>();
 
-        for (TipoFinanceiro tipo : getLista()) {
+        for (TipoOperacao tipo : getLista()) {
             listaAux.add(tipo.toString());
         }
 

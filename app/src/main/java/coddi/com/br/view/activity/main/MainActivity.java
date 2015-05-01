@@ -20,7 +20,10 @@ import java.util.List;
 import coddi.com.br.coddi.R;
 import coddi.com.br.view.activity.main.fragment.CategoriaFragment;
 import coddi.com.br.view.activity.main.fragment.ContaFragment;
+import coddi.com.br.view.activity.main.fragment.PagamentoFragment;
+import coddi.com.br.view.activity.main.fragment.SaqueFragment;
 import coddi.com.br.view.activity.main.fragment.TipoMenu;
+import coddi.com.br.view.activity.main.fragment.TransferenciaFragment;
 
 
 public class MainActivity extends Activity {
@@ -144,7 +147,6 @@ public class MainActivity extends Activity {
             FragmentManager fragmentManager = getFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
 
-            // update selected item and title, then close the drawer
             mDrawerList.setItemChecked(position, true);
             setTitle(mPlanetTitles.get(position).getTitulo());
             mDrawerLayout.closeDrawer(mDrawerList);
@@ -156,14 +158,42 @@ public class MainActivity extends Activity {
             FragmentManager fragmentManager = getFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
 
-            // update selected item and title, then close the drawer
             mDrawerList.setItemChecked(position, true);
             setTitle(mPlanetTitles.get(position).getTitulo());
             mDrawerLayout.closeDrawer(mDrawerList);
         }
 
         if (position == TipoMenu.PAGAMENTO.getId()) {
+            PagamentoFragment fragment = new PagamentoFragment();
 
+            FragmentManager fragmentManager = getFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
+
+            mDrawerList.setItemChecked(position, true);
+            setTitle(mPlanetTitles.get(position).getTitulo());
+            mDrawerLayout.closeDrawer(mDrawerList);
+        }
+
+        if (position == TipoMenu.SAQUE.getId()) {
+            SaqueFragment fragment = new SaqueFragment();
+
+            FragmentManager fragmentManager = getFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
+
+            mDrawerList.setItemChecked(position, true);
+            setTitle(mPlanetTitles.get(position).getTitulo());
+            mDrawerLayout.closeDrawer(mDrawerList);
+        }
+
+        if (position == TipoMenu.TRANSFERENCIA.getId()) {
+            TransferenciaFragment fragment = new TransferenciaFragment();
+
+            FragmentManager fragmentManager = getFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
+
+            mDrawerList.setItemChecked(position, true);
+            setTitle(mPlanetTitles.get(position).getTitulo());
+            mDrawerLayout.closeDrawer(mDrawerList);
         }
     }
 

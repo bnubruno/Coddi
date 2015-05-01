@@ -12,7 +12,7 @@
         android:layout_marginLeft="12dp"
         android:layout_marginRight="12dp"
         android:contentDescription="@string/itemicon"
-        android:src="@drawable/contabanco"
+        android:src="@drawable/pagamento"
         android:layout_centerVertical="true"/>
 
     <LinearLayout
@@ -40,7 +40,8 @@
                   android:textAppearance="?android:attr/textAppearanceListItemSmall"
                   android:gravity="center_vertical"
                   android:minHeight="?android:attr/listPreferredItemHeightSmall"
-                  android:id="@+id/txtTipo"
+                  android:id="@+id/txtSaldo"
+                  android:text="R$ 500,00"
                   android:textSize="10dp"
                   android:textColor="@color/preto"
                   android:layout_marginLeft="4dp"

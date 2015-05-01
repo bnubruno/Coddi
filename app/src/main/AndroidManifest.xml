@@ -36,6 +36,18 @@
             android:name="coddi.com.br.view.activity.conta.CadastrarContaActivity"
             android:label="@string/title_activity_cadastrar_conta" >
         </activity>
+        <activity
+            android:name="coddi.com.br.view.activity.pagamento.CadastrarPagamentoActivity"
+            android:label="@string/title_activity_cadastrar_pagamento" >
+        </activity>
+        <activity
+            android:name="coddi.com.br.view.activity.saque.CadastrarSaqueActivity"
+            android:label="@string/title_activity_cadastrar_saque" >
+        </activity>
+        <activity
+            android:name="coddi.com.br.view.activity.transferencia.CadastrarTransferenciaActivity"
+            android:label="@string/title_activity_cadastrar_transferencia" >
+        </activity>
     </application>
 
 </manifest>

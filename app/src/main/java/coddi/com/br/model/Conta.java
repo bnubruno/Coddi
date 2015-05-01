@@ -45,4 +45,24 @@ public class Conta extends AbstractPojo {
         this.tipoConta = tipoConta;
     }
 
+    public String getString() {
+        switch (getTipoConta()) {
+            case CARTAO_CREDITO:
+                return "Cartão de crédito (" + getNome() + ")";
+            case CARTAO_DEBITO:
+                return "Cartão de débito (" + getNome() + ")";
+            case CARTEIRA:
+                return "Dinheiro (" + getNome() + ")";
+            case CORRENTE:
+                return "Conta corrente (" + getNome() + ")";
+            case POUPANCA:
+                return "Conta poupança (" + getNome() + ")";
+        }
+        return nome;
+    }
+
+    @Override
+    public String toString() {
+        return tipoConta.getDescricao() + "(" + getNome() + ")";
+    }
 }

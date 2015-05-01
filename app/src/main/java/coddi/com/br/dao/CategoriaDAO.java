@@ -36,4 +36,20 @@ public class CategoriaDAO extends AbstractDAO<Categoria, Long> {
         return list;
     }
 
+    public Categoria buscarPorMovimentacao() {
+        List<Categoria> list = null;
+        try {
+            QueryBuilder<Categoria, Long> qb = queryBuilder();
+            Where where = qb.where();
+            where.and(where.eq("tipoFinanceiro", TipoFinanceiro.MOVIMENTACAO), where.eq("status", TipoStatus.ATIVO));
+            qb.orderBy("nome", true);
+            list = qb.query();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return list.get(0);
+    }
+
 }

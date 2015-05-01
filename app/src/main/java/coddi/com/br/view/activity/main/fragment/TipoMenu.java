@@ -6,11 +6,11 @@ package coddi.com.br.view.activity.main.fragment;
 public enum TipoMenu {
     CATEGORIA(1, "Categoria", 0),
     CONTA(2, "Conta", 1),
-    PAGAMENTO(3, "Pagamento", 2),
-    SAQUE(4, "Saque", 2),
-    DEPOSITO(5, "Depósito", 3),
-    TRANSFERENCIA(6, "Transferência", 4),
-    RESULTADO(7, "Resultado", 5);
+    PAGAMENTO(4, "Pagamento", 2),
+    SAQUE(5, "Saque", 2),
+    DEPOSITO(99, "Depósito", 3),
+    TRANSFERENCIA(7, "Transferência", 4),
+    RESULTADO(99, "Resultado", 5);
 
     private TipoMenu(int id, String descricao, int posIcone) {
         this.id = id;

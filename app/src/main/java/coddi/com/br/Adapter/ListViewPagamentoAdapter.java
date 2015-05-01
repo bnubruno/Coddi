@@ -13,31 +13,28 @@ import java.util.List;
 
 import coddi.com.br.coddi.R;
 import coddi.com.br.model.Conta;
+import coddi.com.br.model.Lancamento;
 
 /**
  * Created by Bruno on 03/04/2015.
  */
-public class ListViewContaAdapter extends BaseAdapter {
+public class ListViewPagamentoAdapter extends BaseAdapter {
 
     private Context context;
-    private List<ItemListConta> lista;
+    private List<Lancamento> lista;
 
-    public ListViewContaAdapter(Context context, List<Conta> lista) {
+    public ListViewPagamentoAdapter(Context context, List<Lancamento> lista) {
         this.context = context;
 
         atualizaLista(lista);
     }
 
-    public void atualizaLista(List<Conta> lista) {
+    public void atualizaLista(List<Lancamento> lista) {
         if (lista == null) {
             lista = new ArrayList<>();
         }
-        List<ItemListConta> listaAux = new ArrayList<>();
-        for (Conta conta : lista) {
-            listaAux.add(new ItemListConta(conta));
-        }
-        listaAux.add(0, new ItemListConta("Contas"));
-        this.lista = listaAux;
+
+        this.lista = lista;
         notifyDataSetChanged();
     }
 
@@ -59,49 +56,29 @@ public class ListViewContaAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        ItemListConta itemListConta = lista.get(position);
+        Lancamento lancamento = lista.get(position);
 
-        if (itemListConta.getTipoItem() == TipoItem.N) {
-            convertView = getViewNormal(position);
-        } else {
-            convertView = getViewSection(position);
-        }
+        convertView = getViewNormal(position);
 
         return convertView;
     }
 
     private View getViewNormal(int position) {
         View convertView;
-        Conta conta = lista.get(position).getConta();
+        Lancamento lancamento = lista.get(position);
         LayoutInflater mInflater = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
-        convertView = mInflater.inflate(R.layout.conta_lista_item, null);
+        convertView = mInflater.inflate(R.layout.pagamento_lista_item, null);
 
         TextView txtNomeConta = (TextView) convertView.findViewById(R.id.txtNomeConta);
-        txtNomeConta.setText(conta.getNome());
+        txtNomeConta.setText(lancamento.getDescricao() + " - " + lancamento.getConta().getString());
 
-        TextView txtTipo = (TextView) convertView.findViewById(R.id.txtTipo);
-        txtTipo.setText(conta.getTipoConta().toString());
-
-        return convertView;
-    }
-
-    private View getViewSection(int position) {
-        View convertView;
-
-        LayoutInflater mInflater = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
-        convertView = mInflater.inflate(R.layout.conta_lista_section, null);
-
-        TextView txtNomeContaSection = (TextView) convertView.findViewById(R.id.txtNomeContaSection);
-        txtNomeContaSection.setText(lista.get(position).getDescricao());
-
-        txtNomeContaSection.setClickable(false);
-        txtNomeContaSection.setSelected(false);
+        TextView txtValor = (TextView) convertView.findViewById(R.id.txtSaldo);
+        txtValor.setText(lancamento.getCategoria().getNome() + " - R$ " + lancamento.getValor().setScale(2).toString());
 
         return convertView;
     }
 
-
-    public List<ItemListConta> getLista() {
+    public List<Lancamento> getLista() {
         return lista;
     }
 

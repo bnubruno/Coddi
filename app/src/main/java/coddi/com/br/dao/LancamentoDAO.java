@@ -28,7 +28,8 @@ public class LancamentoDAO extends AbstractDAO<Lancamento, Long> {
             QueryBuilder<Lancamento, Long> qb = queryBuilder();
             Where where = qb.where();
             where.and(where.eq("tipoFinanceiro", tipoFinanceiro), where.eq("status", TipoStatus.ATIVO));
-            qb.orderBy("data", true);
+            qb.orderBy("data", false);
+            qb.orderBy("id", false);
             list = qb.query();
 
         } catch (SQLException e) {
@@ -44,7 +45,25 @@ public class LancamentoDAO extends AbstractDAO<Lancamento, Long> {
             QueryBuilder<Lancamento, Long> qb = queryBuilder();
             Where where = qb.where();
             where.and(where.eq("tipoOperacao", tipoOperacao), where.eq("status", TipoStatus.ATIVO));
-            qb.orderBy("data", true);
+            qb.orderBy("data", false);
+            qb.orderBy("id", false);
+            list = qb.query();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return list;
+    }
+
+    public List<Lancamento> buscarLancamentosPorConta(Long idConta) {
+        List<Lancamento> list = new ArrayList<>();
+        try {
+            QueryBuilder<Lancamento, Long> qb = queryBuilder();
+            Where where = qb.where();
+            where.and(where.eq("idConta", idConta), where.eq("status", TipoStatus.ATIVO));
+            qb.orderBy("data", false);
+            qb.orderBy("id", false);
             list = qb.query();
 
         } catch (SQLException e) {

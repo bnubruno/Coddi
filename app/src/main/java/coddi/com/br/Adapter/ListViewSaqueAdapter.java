@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ import java.util.List;
 import coddi.com.br.coddi.R;
 import coddi.com.br.model.Conta;
 import coddi.com.br.model.Lancamento;
+import coddi.com.br.model.TipoFinanceiro;
 
 /**
  * Created by Bruno on 03/04/2015.
@@ -74,6 +76,17 @@ public class ListViewSaqueAdapter extends BaseAdapter {
 
         TextView txtValor = (TextView) convertView.findViewById(R.id.txtSaldo);
         txtValor.setText("R$ " + lancamento.getValor().setScale(2).toString());
+
+        TextView txtForma = (TextView) convertView.findViewById(R.id.txtFormaPagamento);
+        txtForma.setText(lancamento.getConta().getString());
+
+        ImageView icone = (ImageView) convertView.findViewById(R.id.icon);
+        if (lancamento.getTipoFinanceiro() == TipoFinanceiro.ENTRADA) {
+            icone.setImageResource(R.drawable.entrada);
+        } else {
+            icone.setImageResource(R.drawable.saida);
+        }
+
 
         return convertView;
     }

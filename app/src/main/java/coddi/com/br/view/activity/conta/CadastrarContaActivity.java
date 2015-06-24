@@ -66,7 +66,12 @@ public class CadastrarContaActivity extends Activity {
                 conta.setDataCadastro(new Date());
                 conta.setTipoConta(tipoConta);
 
-                pool.getContaBO().incluir(conta);
+                try {
+                    pool.getContaBO().incluir(conta);
+                } catch (Exception e) {
+                    Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                    return;
+                }
 
                 Toast.makeText(getApplicationContext(), "Registro incluído com sucesso.", Toast.LENGTH_LONG);
 

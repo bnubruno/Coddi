@@ -20,12 +20,12 @@ import coddi.com.br.coddi.R;
 import coddi.com.br.controller.BOPool;
 import coddi.com.br.model.Lancamento;
 import coddi.com.br.model.TipoOperacao;
-import coddi.com.br.view.activity.pagamento.CadastrarPagamentoActivity;
+import coddi.com.br.view.activity.recebimento.CadastrarRecebimentoActivity;
 
 /**
  * Created by Bruno on 28/03/2015.
  */
-public class PagamentoFragment extends MainActivityFragment {
+public class RecebimentoFragment extends MainActivityFragment {
 
     private BOPool pool;
     private ListView lista;
@@ -37,11 +37,11 @@ public class PagamentoFragment extends MainActivityFragment {
 
         pool = BOPool.getInstance((coddi.com.br.App.CoddiApplication) getActivity().getApplicationContext());
 
-        List<Lancamento> lancamentos = pool.getLancamentoBO().buscarLancamentosPagamento(TipoOperacao.PAGAMENTO);
+        List<Lancamento> lancamentos = pool.getLancamentoBO().buscarLancamentosPagamento(TipoOperacao.RECEBIMENTO);
 
-        rootView = inflater.inflate(R.layout.fragment_pagamentos, container, false);
+        rootView = inflater.inflate(R.layout.fragment_recebimento, container, false);
 
-        lista = (ListView) rootView.findViewById(R.id.listPagamentos);
+        lista = (ListView) rootView.findViewById(R.id.listRecebimento);
         ListViewPagamentoAdapter adapter = new ListViewPagamentoAdapter(getActivity().getApplicationContext(), lancamentos);
         lista.setAdapter(adapter);
 
@@ -52,7 +52,7 @@ public class PagamentoFragment extends MainActivityFragment {
 
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-        if (v.getId() == R.id.listPagamentos) {
+        if (v.getId() == R.id.listRecebimento) {
             AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
             ListViewPagamentoAdapter adapter = (ListViewPagamentoAdapter) lista.getAdapter();
             menu.setHeaderTitle(adapter.getLista().get(info.position).getDescricao());
@@ -86,14 +86,14 @@ public class PagamentoFragment extends MainActivityFragment {
     }
 
     private void atualizaLista() {
-        List<Lancamento> lancamentos = pool.getLancamentoBO().buscarLancamentosPagamento(TipoOperacao.PAGAMENTO);
+        List<Lancamento> lancamentos = pool.getLancamentoBO().buscarLancamentosPagamento(TipoOperacao.RECEBIMENTO);
 
         ((ListViewPagamentoAdapter) lista.getAdapter()).atualizaLista(lancamentos);
     }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        MenuItem m2 = menu.add(1, 1, 1, "+Pag");
+        MenuItem m2 = menu.add(1, 1, 1, "+Rec");
         m2.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
 
         super.onCreateOptionsMenu(menu, inflater);
@@ -103,7 +103,7 @@ public class PagamentoFragment extends MainActivityFragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case 1:
-                Intent j = new Intent(getActivity(), CadastrarPagamentoActivity.class);
+                Intent j = new Intent(getActivity(), CadastrarRecebimentoActivity.class);
                 startActivity(j);
 
                 break;

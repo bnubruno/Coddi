@@ -26,9 +26,7 @@ public class ListViewCategoriaAdapter extends BaseAdapter {
 
     public ListViewCategoriaAdapter(Context context, List<Categoria> listaEntrada, List<Categoria> listaSaida) {
         this.context = context;
-
         unifica(listaEntrada, listaSaida);
-
     }
 
     private void unifica(List<Categoria> listaEntrada, List<Categoria> listaSaida) {

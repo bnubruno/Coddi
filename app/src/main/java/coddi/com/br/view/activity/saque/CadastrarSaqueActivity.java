@@ -106,10 +106,14 @@ public class CadastrarSaqueActivity extends Activity {
                 lancamentoOrigem.setData(new Date());
                 lancamentoOrigem.setTipoFinanceiro(TipoFinanceiro.SAIDA);
                 lancamentoOrigem.setIdCategoria(categoria.getId());
-                lancamentoOrigem.setIdConta(contaDestino.getId());
+                lancamentoOrigem.setIdConta(contaOrigem.getId());
                 lancamentoOrigem.setDescricao(descricao);
                 lancamentoOrigem.setTipoOperacao(TipoOperacao.SAQUE);
-                pool.getLancamentoBO().incluir(lancamentoOrigem);
+                try {
+                    pool.getLancamentoBO().incluir(lancamentoOrigem);
+                } catch (Exception e) {
+                    Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                }
 
                 Lancamento lancamentoDestino = new Lancamento();
                 lancamentoDestino.setValor(valor);
@@ -120,7 +124,12 @@ public class CadastrarSaqueActivity extends Activity {
                 lancamentoDestino.setIdConta(contaDestino.getId());
                 lancamentoDestino.setDescricao(descricao);
                 lancamentoDestino.setTipoOperacao(TipoOperacao.SAQUE);
-                pool.getLancamentoBO().incluir(lancamentoDestino);
+                try {
+                    pool.getLancamentoBO().incluir(lancamentoDestino);
+                } catch (Exception e) {
+                    Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                    return;
+                }
 
                 finish();
             }

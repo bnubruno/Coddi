@@ -2,8 +2,6 @@ package coddi.com.br.controller;
 
 import java.util.List;
 
-import coddi.com.br.dao.IDao;
-
 /**
  * Created by Bruno on 08/02/2015.
  */
@@ -15,7 +13,7 @@ public interface IBusinessObject<E, F> {
 
     public E buscarPorId(F id);
 
-    public void incluir(E objeto);
+    public void incluir(E objeto) throws Exception;
 
     public void alterar(E objeto);
 

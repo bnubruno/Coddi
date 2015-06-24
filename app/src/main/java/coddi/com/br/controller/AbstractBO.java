@@ -57,7 +57,7 @@ public class AbstractBO<E extends AbstractPojo, F> implements IBusinessObject<E,
     }
 
     @Override
-    public void incluir(E objeto) {
+    public void incluir(E objeto) throws Exception {
         if (objeto.getId() != null) {
             throw new NullPointerException("ID do pojo deve ser nulo.");
         }

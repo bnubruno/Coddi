@@ -21,6 +21,7 @@ import coddi.com.br.coddi.R;
 import coddi.com.br.view.activity.main.fragment.CategoriaFragment;
 import coddi.com.br.view.activity.main.fragment.ContaFragment;
 import coddi.com.br.view.activity.main.fragment.PagamentoFragment;
+import coddi.com.br.view.activity.main.fragment.RecebimentoFragment;
 import coddi.com.br.view.activity.main.fragment.SaqueFragment;
 import coddi.com.br.view.activity.main.fragment.TipoMenu;
 import coddi.com.br.view.activity.main.fragment.TransferenciaFragment;
@@ -54,7 +55,7 @@ public class MainActivity extends Activity {
         itens.add(new NavigationDrawerItem("Operações", true));
         itens.add(new NavigationDrawerItem(TipoMenu.PAGAMENTO.getDescricao(), arrayIcons.getResourceId(TipoMenu.PAGAMENTO.getPosicaoIcone(), -1)));
         itens.add(new NavigationDrawerItem(TipoMenu.SAQUE.getDescricao(), arrayIcons.getResourceId(TipoMenu.SAQUE.getPosicaoIcone(), -1)));
-        itens.add(new NavigationDrawerItem(TipoMenu.DEPOSITO.getDescricao(), arrayIcons.getResourceId(TipoMenu.DEPOSITO.getPosicaoIcone(), -1)));
+        itens.add(new NavigationDrawerItem(TipoMenu.RECEBIMENTO.getDescricao(), arrayIcons.getResourceId(TipoMenu.RECEBIMENTO.getPosicaoIcone(), -1)));
         itens.add(new NavigationDrawerItem(TipoMenu.TRANSFERENCIA.getDescricao(), arrayIcons.getResourceId(TipoMenu.TRANSFERENCIA.getPosicaoIcone(), -1)));
         itens.add(new NavigationDrawerItem("Consultas", true));
         itens.add(new NavigationDrawerItem(TipoMenu.RESULTADO.getDescricao(), arrayIcons.getResourceId(TipoMenu.RESULTADO.getPosicaoIcone(), -1)));
@@ -176,6 +177,16 @@ public class MainActivity extends Activity {
 
         if (position == TipoMenu.SAQUE.getId()) {
             SaqueFragment fragment = new SaqueFragment();
+
+            FragmentManager fragmentManager = getFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
+
+            mDrawerList.setItemChecked(position, true);
+            setTitle(mPlanetTitles.get(position).getTitulo());
+            mDrawerLayout.closeDrawer(mDrawerList);
+        }
+        if (position == TipoMenu.RECEBIMENTO.getId()) {
+            RecebimentoFragment fragment = new RecebimentoFragment();
 
             FragmentManager fragmentManager = getFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();

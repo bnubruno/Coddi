@@ -35,5 +35,6 @@
     <string name="title_activity_cadastrar_pagamento">+ Pagamento</string>
     <string name="title_activity_cadastrar_saque">+ Saque</string>
     <string name="title_activity_cadastrar_transferencia">+ Transferência</string>
+    <string name="title_activity_cadastrar_recebimento">+ Recebimento</string>
 
 </resources>

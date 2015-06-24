@@ -53,7 +53,7 @@ public class TransferenciaFragment extends MainActivityFragment {
 
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-        if (v.getId() == R.id.listPagamentos) {
+        if (v.getId() == R.id.listTransferencia) {
             AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
             ListViewCategoriaAdapter adapter = (ListViewCategoriaAdapter) lista.getAdapter();
             menu.setHeaderTitle(adapter.getListaUnificada().get(info.position).getCategoria().getNome());
@@ -71,7 +71,7 @@ public class TransferenciaFragment extends MainActivityFragment {
             ListViewSaqueAdapter adapter = (ListViewSaqueAdapter) lista.getAdapter();
             Lancamento lancamentoDeletado = adapter.getLista().get(info.position);
 
-            pool.getUsuarioBO().inativar(lancamentoDeletado);
+            pool.getLancamentoBO().inativar(lancamentoDeletado);
             atualizaLista();
             Toast.makeText(getActivity().getApplicationContext(), "Pronto! Lançamento deletado com sucesso.", Toast.LENGTH_LONG).show();
         }

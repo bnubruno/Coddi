@@ -1,5 +1,6 @@
 package coddi.com.br.controller;
 
+import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +22,10 @@ public class ContaBO extends AbstractBO {
         return getDao().buscarTodosAtivos();
     }
 
+    public List<Conta> buscarContasParaRecebimento() {
+        return getDao().buscarContasRecebimento();
+    }
+
     public List<Conta> buscarContasParaPagamento() {
         return getDao().buscarContasPagamento();
     }
@@ -33,6 +38,18 @@ public class ContaBO extends AbstractBO {
             listaString.add(conta.getString());
         }
         listaString.add("Forma de pagamento:");
+
+        return listaString;
+    }
+
+    public List<String> buscarContasParaRecebimentoString() {
+        List<Conta> lista = getDao().buscarContasRecebimento();
+        List<String> listaString = new ArrayList<>();
+
+        for (Conta conta : lista) {
+            listaString.add(conta.getString());
+        }
+        listaString.add("Destino:");
 
         return listaString;
     }

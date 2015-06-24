@@ -24,6 +24,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -221,7 +222,11 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
                 usuario.setLogin("docsbruno@gmail.com");
                 usuario.setSenha("123456");
                 usuario.setVersion(1);
-                usuarioBO.incluir(usuario);
+                try {
+                    usuarioBO.incluir(usuario);
+                } catch (Exception e) {
+                    Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                }
             }
 
             return false;

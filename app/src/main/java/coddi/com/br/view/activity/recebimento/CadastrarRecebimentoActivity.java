@@ -1,4 +1,4 @@
-package coddi.com.br.view.activity.pagamento;
+package coddi.com.br.view.activity.recebimento;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -23,13 +23,13 @@ import coddi.com.br.model.Lancamento;
 import coddi.com.br.model.TipoFinanceiro;
 import coddi.com.br.model.TipoOperacao;
 
-public class CadastrarPagamentoActivity extends Activity {
+public class CadastrarRecebimentoActivity extends Activity {
 
     private TextView txtValor;
     private Spinner comboCategoria;
     private Spinner comboFormaPagamento;
     private TextView txtDescricao;
-    private Button btnCadastrarPagamento;
+    private Button btnCadastrarRecebimento;
     private SpinnerArrayAdapter spinnerAdapterCategoria;
     private SpinnerArrayAdapter spinnerAdapterPagamento;
 
@@ -41,8 +41,7 @@ public class CadastrarPagamentoActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cadastrar_pagamento);
-
+        setContentView(R.layout.activity_cadastrar_recebimento);
 
         pool = BOPool.getInstance((coddi.com.br.App.CoddiApplication) getApplicationContext());
 
@@ -50,24 +49,24 @@ public class CadastrarPagamentoActivity extends Activity {
         comboCategoria = (Spinner) findViewById(R.id.comboCategoria);
         comboFormaPagamento = (Spinner) findViewById(R.id.comboFormaPagamento);
         txtDescricao = (TextView) findViewById(R.id.txtDescricao);
-        btnCadastrarPagamento = (Button) findViewById(R.id.btnCadastrarPagamento);
+        btnCadastrarRecebimento = (Button) findViewById(R.id.btnCadastrarRecebimento);
 
-        listaCategorias = pool.getCategoriaBO().buscarPorTipoFinanceiro(TipoFinanceiro.SAIDA);
-        List<String> categorias = pool.getCategoriaBO().buscarPorTipoFinanceiroString(TipoFinanceiro.SAIDA);
+        listaCategorias = pool.getCategoriaBO().buscarPorTipoFinanceiro(TipoFinanceiro.ENTRADA);
+        List<String> categorias = pool.getCategoriaBO().buscarPorTipoFinanceiroString(TipoFinanceiro.ENTRADA);
         spinnerAdapterCategoria = new SpinnerArrayAdapter(getApplicationContext(), categorias);
         spinnerAdapterCategoria.setDropDownViewResource(R.layout.spinner_drop_down);
         comboCategoria.setAdapter(spinnerAdapterCategoria);
         comboCategoria.setSelection(this.spinnerAdapterCategoria.getCount());
 
-        listaContas = pool.getContaBO().buscarContasParaPagamento();
-        List<String> formas = pool.getContaBO().buscarContasParaPagamentoString();
+        listaContas = pool.getContaBO().buscarContasParaRecebimento();
+        List<String> formas = pool.getContaBO().buscarContasParaRecebimentoString();
         spinnerAdapterPagamento = new SpinnerArrayAdapter(getApplicationContext(), formas);
         spinnerAdapterPagamento.setDropDownViewResource(R.layout.spinner_drop_down);
         comboFormaPagamento.setAdapter(spinnerAdapterPagamento);
         comboFormaPagamento.setSelection(spinnerAdapterPagamento.getCount());
 
-        btnCadastrarPagamento = (Button) findViewById(R.id.btnCadastrarPagamento);
-        btnCadastrarPagamento.setOnClickListener(new View.OnClickListener() {
+        btnCadastrarRecebimento = (Button) findViewById(R.id.btnCadastrarRecebimento);
+        btnCadastrarRecebimento.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -103,11 +102,11 @@ public class CadastrarPagamentoActivity extends Activity {
                 lancamento.setValor(valor);
                 lancamento.setDataCadastro(new Date());
                 lancamento.setData(new Date());
-                lancamento.setTipoFinanceiro(TipoFinanceiro.SAIDA);
+                lancamento.setTipoFinanceiro(TipoFinanceiro.ENTRADA);
                 lancamento.setIdCategoria(categoria.getId());
                 lancamento.setIdConta(conta.getId());
                 lancamento.setDescricao(descricao);
-                lancamento.setTipoOperacao(TipoOperacao.PAGAMENTO);
+                lancamento.setTipoOperacao(TipoOperacao.RECEBIMENTO);
 
                 try {
                     pool.getLancamentoBO().incluir(lancamento);

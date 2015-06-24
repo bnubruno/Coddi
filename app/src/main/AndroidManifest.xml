@@ -48,6 +48,10 @@
             android:name="coddi.com.br.view.activity.transferencia.CadastrarTransferenciaActivity"
             android:label="@string/title_activity_cadastrar_transferencia" >
         </activity>
+        <activity
+            android:name="coddi.com.br.view.activity.recebimento.CadastrarRecebimentoActivity"
+            android:label="@string/title_activity_cadastrar_recebimento" >
+        </activity>
     </application>
 
 </manifest>

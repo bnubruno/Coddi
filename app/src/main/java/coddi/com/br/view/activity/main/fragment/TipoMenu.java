@@ -8,7 +8,7 @@ public enum TipoMenu {
     CONTA(2, "Conta", 1),
     PAGAMENTO(4, "Pagamento", 2),
     SAQUE(5, "Saque", 2),
-    DEPOSITO(99, "Depósito", 3),
+    RECEBIMENTO(6, "Recebimento", 3),
     TRANSFERENCIA(7, "Transferência", 4),
     RESULTADO(99, "Resultado", 5);
 

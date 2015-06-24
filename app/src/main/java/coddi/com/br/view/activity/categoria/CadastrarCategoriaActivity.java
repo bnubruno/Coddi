@@ -65,7 +65,12 @@ public class CadastrarCategoriaActivity extends Activity {
                 categoria.setTipoFinanceiro(tipoFinanceiro);
                 categoria.setStatus(TipoStatus.ATIVO);
 
-                pool.getCategoriaBO().incluir(categoria);
+                try {
+                    pool.getCategoriaBO().incluir(categoria);
+                } catch (Exception e) {
+                    Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                    return;
+                }
                 Toast.makeText(getApplicationContext(), "Registro incluído com sucesso.", Toast.LENGTH_LONG);
 
                 finish();

@@ -42,7 +42,23 @@ public class ContaDAO extends AbstractDAO<Conta, Long> {
         try {
             QueryBuilder<Conta, Long> qb = queryBuilder();
             Where where = qb.where();
-            where.and(where.or(where.eq("tipoConta", TipoConta.CARTEIRA), where.eq("tipoConta", TipoConta.CARTAO_CREDITO)), where.eq("status", TipoStatus.ATIVO));
+            where.and(where.or(where.eq("tipoConta", TipoConta.CARTEIRA), where.eq("tipoConta", TipoConta.CARTAO_CREDITO), where.eq("tipoConta", TipoConta.CARTAO_DEBITO)), where.eq("status", TipoStatus.ATIVO));
+            qb.orderBy("nome", true);
+            list = qb.query();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return list;
+    }
+
+    public List<Conta> buscarContasRecebimento() {
+        List<Conta> list = new ArrayList<>();
+        try {
+            QueryBuilder<Conta, Long> qb = queryBuilder();
+            Where where = qb.where();
+            where.and(where.or(where.eq("tipoConta", TipoConta.CARTEIRA), where.eq("tipoConta", TipoConta.CORRENTE), where.eq("tipoConta", TipoConta.POUPANCA)), where.eq("status", TipoStatus.ATIVO));
             qb.orderBy("nome", true);
             list = qb.query();
 

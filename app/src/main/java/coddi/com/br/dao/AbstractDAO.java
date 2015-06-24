@@ -19,6 +19,9 @@ public class AbstractDAO<E, F> extends BaseDaoImpl<E, F> implements IDao<E, F> {
         initialize();
     }
 
+
+
+    dasdas
     @Override
     public List<E> buscarTodos() {
         List<E> lista = null;

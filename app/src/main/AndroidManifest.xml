@@ -52,6 +52,10 @@
             android:name="coddi.com.br.view.activity.recebimento.CadastrarRecebimentoActivity"
             android:label="@string/title_activity_cadastrar_recebimento" >
         </activity>
+        <activity
+            android:name="coddi.com.br.view.activity.resultado.ResultadoActivity"
+            android:label="@string/title_activity_resultado" >
+        </activity>
     </application>
 
 </manifest>

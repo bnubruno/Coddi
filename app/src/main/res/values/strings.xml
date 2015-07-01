@@ -36,5 +36,13 @@
     <string name="title_activity_cadastrar_saque">+ Saque</string>
     <string name="title_activity_cadastrar_transferencia">+ Transferência</string>
     <string name="title_activity_cadastrar_recebimento">+ Recebimento</string>
+    <string name="title_activity_resultado">ResultadoActivity</string>
+    <string name="txtMesReferencia">06/10</string>
+    <string name="tvLabelReceitas">receita</string>
+    <string name="txtDescReceitas">receita</string>
+    <string name="txtDescDespesas">despesas</string>
+    <string name="tvLabelDespesas">despesas</string>
+    <string name="txtDescSaldoMes">saldo</string>
+    <string name="tvLabelSaldoMes">saldo</string>
 
 </resources>

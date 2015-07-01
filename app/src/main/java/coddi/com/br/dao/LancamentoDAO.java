@@ -72,4 +72,22 @@ public class LancamentoDAO extends AbstractDAO<Lancamento, Long> {
 
         return list;
     }
+
+    public List<Lancamento> buscarLancamentosPorTipoFinanceiro(TipoFinanceiro tipoFinanceiro) {
+        List<Lancamento> list = new ArrayList<>();
+        try {
+            QueryBuilder<Lancamento, Long> qb = queryBuilder();
+            Where where = qb.where();
+            where.and(where.eq("tipoFinanceiro", tipoFinanceiro), where.eq("status", TipoStatus.ATIVO));
+            qb.orderBy("data", false);
+            qb.orderBy("id", false);
+            list = qb.query();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return list;
+    }
+
 }

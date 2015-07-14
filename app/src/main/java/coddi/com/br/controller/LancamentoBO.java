@@ -83,6 +83,11 @@ public class LancamentoBO extends AbstractBO<Lancamento, Long> {
 
         for (Lancamento entrada : entradas) {
             String data = Macetes.dateToString(entrada.getData(), "MM/yyyy");
+
+            if (entrada.getTipoOperacao() != TipoOperacao.RECEBIMENTO) {
+                continue;
+            }
+
             if (mapResultado.containsKey(data)) {
                 ResultadoMensal resultado = mapResultado.get(data);
                 resultado.setReceitas(resultado.getReceitas().add(entrada.getValor()));
@@ -95,6 +100,11 @@ public class LancamentoBO extends AbstractBO<Lancamento, Long> {
         }
 
         for (Lancamento saida : saidas) {
+
+            if(saida.getTipoOperacao() != TipoOperacao.PAGAMENTO){
+                continue;
+            }
+
             String data = Macetes.dateToString(saida.getData(), "MM/yyyy");
             if (mapResultado.containsKey(data)) {
                 ResultadoMensal resultado = mapResultado.get(data);

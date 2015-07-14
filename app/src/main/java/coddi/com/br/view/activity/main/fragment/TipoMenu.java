@@ -10,7 +10,7 @@ public enum TipoMenu {
     SAQUE(5, "Saque", 2),
     RECEBIMENTO(6, "Recebimento", 3),
     TRANSFERENCIA(7, "Transferência", 4),
-    RESULTADO(99, "Resultado", 5);
+    RESULTADO(9, "Resultado", 5);
 
     private TipoMenu(int id, String descricao, int posIcone) {
         this.id = id;

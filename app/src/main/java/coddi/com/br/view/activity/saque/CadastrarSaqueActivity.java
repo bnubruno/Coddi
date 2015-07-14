@@ -113,6 +113,7 @@ public class CadastrarSaqueActivity extends Activity {
                     pool.getLancamentoBO().incluir(lancamentoOrigem);
                 } catch (Exception e) {
                     Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                    return;
                 }
 
                 Lancamento lancamentoDestino = new Lancamento();

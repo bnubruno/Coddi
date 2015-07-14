@@ -1,0 +1,119 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:id="@+id/drawerListItem"
+                android:background="@color/branco"
+                android:padding="15px">
+
+
+    <RelativeLayout
+        android:id="@+id/relative_data_movimento"
+        android:layout_width="match_parent"
+        android:layout_height="70dp">
+
+        <RelativeLayout
+            android:id="@+id/relative_main_outro"
+            android:layout_width="wrap_content"
+            android:layout_height="70dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:gravity="center"
+            android:paddingLeft="5dp">
+
+            <TextView
+                android:id="@+id/tvMesReferencia"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txtMesReferencia"
+                android:textColor="@color/list_item_title"
+                android:textSize="12sp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/relative_main_riht"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_toRightOf="@+id/relative_main_center"
+            android:paddingRight="5dp">
+
+            <TextView
+                android:id="@+id/tvLabelReceitas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:text="@string/tvLabelReceitas"
+                android:textColor="@color/list_item_title"
+                android:textSize="12sp"
+                android:textStyle="normal"
+                android:layout_alignTop="@+id/tvReceitas"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"/>
+
+            <TextView
+                android:id="@+id/tvReceitas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@id/tvLabelReceitas"
+                android:gravity="center_vertical"
+                android:paddingLeft="5dp"
+                android:text="@string/txtDescReceitas"
+                android:textSize="13sp"/>
+
+            <TextView
+                android:id="@+id/tvDespesas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/tvLabelDespesas"
+                android:layout_alignBottom="@+id/tvLabelDespesas"
+                android:layout_toRightOf="@+id/tvLabelDespesas"
+                android:gravity="center_vertical"
+                android:paddingLeft="5dp"
+                android:text="@string/txtDescDespesas"
+                android:textSize="13sp"/>
+
+            <TextView
+                android:id="@+id/tvLabelDespesas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_marginTop="6dp"
+                android:layout_below="@+id/tvReceitas"
+                android:gravity="center_vertical"
+                android:text="@string/tvLabelDespesas"
+                android:textColor="@color/list_item_title"
+                android:textSize="12sp"
+                android:textStyle="normal"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/relative_main_center"
+            android:layout_width="130dp"
+            android:layout_height="70dp"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@id/relative_main_outro"
+            android:paddingLeft="5dp">
+
+            <TextView
+                android:id="@+id/tvSaldoMes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/txtDescSaldoMes"
+                android:textAppearance="?android:attr/textAppearanceListItem"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"/>
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+</RelativeLayout>
